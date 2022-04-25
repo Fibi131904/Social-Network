@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { addPostAC, PostDataType, updateNewPostTextAC } from '../../../redux/profile-reducer';
 import { AppStateType } from '../../../redux/redux-store';
-
-
 import MyPosts from './MyPosts';
 
 type mapStateToPropsType = {

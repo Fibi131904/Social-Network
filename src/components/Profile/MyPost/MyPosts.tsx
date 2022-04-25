@@ -1,5 +1,4 @@
 import React from 'react';
-import { ActionType, ProfilePageType } from '../../../../redux/profile-reducer';
 import Post from './Post/Post';
 import classes from './MyPosts.module.css';
 import { MyPostPropsType } from './MyPostsContainer';
