@@ -2,14 +2,14 @@ import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import {  Route } from 'react-router-dom';
 import { Profile } from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
-import { StoreType } from './components/redux/store';
+import { Route } from 'react-router-dom';
+import { DialogsContainer } from './components/Dialogs/DialogsContainer';
+import { UsersContainer } from './components/Users/UsersContainer';
 
-type AppPropsType={
-store: StoreType
-}
+
+type AppPropsType={}
+
 
 function App(props:AppPropsType) {
   return (
@@ -17,10 +17,15 @@ function App(props:AppPropsType) {
       <Header />
       <Navbar />
       <div>
-        <Route>
-          <Route path='/' element={<Dialogs />} />
+          <Route exact path='/dialogs' render={()=> <DialogsContainer/>} />
+          <Route exact path='/profile' render={()=> <Profile/>} />
+          <Route exact path='/users' render={()=> <UsersContainer/>} />
+       
+        {/* <Routes>
+          <Route path='/' element={<DialogsContainer />} />
           <Route path='/profile' element={<Profile store={props.store}/>} />
-        </Route>
+          <Route path='/users' element={<Users/>} />
+        </Routes> */}
       </div>
     </div>
   )

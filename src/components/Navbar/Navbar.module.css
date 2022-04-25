@@ -1,20 +1,23 @@
-
 .nav {
     grid-area: n;
     background-color: rgba(218, 241, 13, 0.966);
     padding: 20px;
-   
-    }
-.active {
-    color:goldenrod;
+
+}
+
+.item a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+a.active {
+    color: goldenrod;
     text-decoration: none;
 }
-    
 
- .item {
-     color: white;
-     text-decoration: none;
-    }
+ 
    
     
     
