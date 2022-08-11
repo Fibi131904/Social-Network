@@ -1,40 +1,34 @@
 import Reacr from 'react'
+import s from './users.module.css'
 import images from '../../assets/img/images.jpg'
 import { UserType } from '../../redux/users-reducer'
-import s from './users.module.css'
 
 
-export type UsersPropsType = {
-    totalUsersCount: number
-    users: Array<UserType>
-    pageSize: number
-    currentPage: number
-    onPageChanged: () => void
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
 
-}
 
- export let Users = (props: UsersPropsType) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+export let Users = (props: UsersPropsType) => {
+
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize) //округление до большего
 
     let pages = []
     for (let i = 0; i <= pagesCount; i++) {
         pages.push(i)
     }
+    
     return <div>
         <div>
             {pages.map(p => {
-
                 return <span className={props.currentPage === p ? s.selectPage : ''}
-                  // @ts-ignore
-                    onClick={(e) => { props.onPageChanged(p) }}>{p}</span>
+
+                    onClick={(e) => {
+                        // @ts-ignore
+                        props.onPageChanged(p)
+                    }}>{p}</span>
             })}
         </div>
         {
-            // @ts-ignore
-            this.props.users.map(u => <div key={u.id}>
+            props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
                         <img src={u.photos.small != null ? u.photos.small : images} alt="photo" className={s.photo} />
@@ -76,4 +70,13 @@ export type UsersPropsType = {
 }
 
 
+export type UsersPropsType = {
+    totalUsersCount: number
+    users: Array<UserType>
+    pageSize: number
+    currentPage: number
+    onPageChanged: () => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 
+}

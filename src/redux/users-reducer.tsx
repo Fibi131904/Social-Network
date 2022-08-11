@@ -6,26 +6,7 @@ const SET_CURRENT_PAGE = "SET_CURREN_PAGE"
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
 const TOGGLE_IS_FETCHING='TOGGLE_IS_FETCHING'
 
-export type UserType = {
-    id: number
-    fullName: string
-    pfotoUrl: string
-    followed: boolean
-    status: string
-    location: UsersLocation
-}
-type UsersLocation = {
-    city: string
-    country: string
-}
 
-export type UsersStateType = {
-    users: Array<UserType>
-    pageSize: number
-    totalUsersCount:number
-    currentPage:number
-    isFetching:boolean
-}
 
 let initionState: UsersStateType = {
     users: [],
@@ -51,7 +32,7 @@ export const usersReducer = (state: UsersStateType = initionState, action: Actio
             return {...state, currentPage: action.payload.currentPage}
         }
         case SET_TOTAL_USERS_COUNT:{
-            return {...state, totalUsersCount: action.payload.totalCount}
+            return {...state, totalUsersCount: action.payload.totalUsersCount}
         }
         case TOGGLE_IS_FETCHING:{
             return {...state, isFetching: action.payload.isFetching}
@@ -61,19 +42,7 @@ export const usersReducer = (state: UsersStateType = initionState, action: Actio
         }
     }
 }
-type followACType=ReturnType<typeof followAC>
-type unfollowACType=ReturnType<typeof unfollowAC>
-type setUsersACType= ReturnType<typeof setUsersAC>
-type setCurrentPageACType= ReturnType<typeof setCurrentPageAC>
-type setTotalUsersCountACType= ReturnType<typeof setTotalUsersCountAC>
-type toggleIsFetchingACType= ReturnType<typeof toggleIsFetchingAC>
 
-type ActionType = followACType
-    | unfollowACType
-    | setUsersACType
-    | setCurrentPageACType
-    | setTotalUsersCountACType
-    | toggleIsFetchingACType
 
 
 export const followAC = (usersId: number) => {
@@ -101,10 +70,10 @@ export const setCurrentPageAC=(currentPage:number)=>{
         payload: {currentPage}
     } as const
 }
-export const setTotalUsersCountAC=(totalCount:number)=>{
+export const setUsersTotalCountAC=(totalUsersCount:number)=>{
     return{
         type: SET_TOTAL_USERS_COUNT, 
-        payload: {totalCount}
+        payload: {totalUsersCount}
     } as const
 }
 export const toggleIsFetchingAC=(isFetching:boolean)=>{
@@ -112,4 +81,41 @@ export const toggleIsFetchingAC=(isFetching:boolean)=>{
         type: TOGGLE_IS_FETCHING, 
         payload: {isFetching}
     } as const
+}
+
+type FollowACType=ReturnType<typeof followAC>
+type UnfollowACType=ReturnType<typeof unfollowAC>
+type SetUsersACType= ReturnType<typeof setUsersAC>
+type SetCurrentPageACType= ReturnType<typeof setCurrentPageAC>
+type SetUsersTotalCountACType= ReturnType<typeof setUsersTotalCountAC>
+type ToggleIsFetchingACType= ReturnType<typeof toggleIsFetchingAC>
+
+type ActionType = FollowACType
+    | UnfollowACType
+    | SetUsersACType
+    | SetCurrentPageACType
+    | SetUsersTotalCountACType
+    | ToggleIsFetchingACType
+    
+export type UserType = {
+    id: number
+    fullName: string
+    pfotoUrl: string
+    followed: boolean
+    status: string
+    location: UsersLocation
+    photos?: any
+    name:string
+}
+type UsersLocation = {
+    city: string
+    country: string
+}
+
+export type UsersStateType = {
+    users: Array<UserType>
+    pageSize: number
+    totalUsersCount:number
+    currentPage:number
+    isFetching:boolean
 }
