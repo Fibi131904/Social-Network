@@ -1,3 +1,5 @@
+import { v1 } from "uuid"
+
 const ADD_POST = "ADD_POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
@@ -10,64 +12,67 @@ export type ActionType =
 export type ProfilePageType = {
     posts: Array<PostDataType>
     newPostText: string
-    profile:ProfileApiType 
+    profile: ProfileApiType
 
 }
 export type PostDataType = {
-    id: number
+    id: string
     message: string
     likesCount: number
 }
-export type ProfileApiType= {
+export type ProfileApiType = {
     userId: number
-    lookingForAJob:boolean
+    lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
     contacts: contactsType
-    photos:photosType
+    photos: photosType
 }
-type contactsType={
+type contactsType = {
     github: string
     vk: string
-    facebook:string
+    facebook: string
     instagram: string
-    twitter:string
+    twitter: string
     website: string
-    youtube:string
-    mainLink: string  
+    youtube: string
+    mainLink: string
 }
-type photosType={
-  small:string  
-  large: string
+type photosType = {
+    small: string
+    large: string
 }
 
 const initialState = {
     posts: [
-        { id: 1, message: 'Hi, how are you?', likesCount: 15 },
-        { id: 2, message: 'Hi, how are you?', likesCount: 20 }
+        { id: v1(), message: 'Hi, how are you?', likesCount: 15 },
+        { id: v1(), message: 'Hi, how are you?', likesCount: 20 }
     ] as Array<PostDataType>,
     newPostText: 'it-kamasutra.com',
     profile: {
+       
         userId: 1,
-        lookingForAJob:true,
-        lookingForAJobDescription: 'string',
-        fullName: "string",
+        lookingForAJob: false,
+        lookingForAJobDescription: '',
+        fullName: '',
         contacts: {
-            github: 'string',
-            vk: 'string',
-            facebook:'string',
-            instagram: 'string',
-            twitter:'string',
-            website: 'string',
-            youtube:'string',
-            mainLink: 'string ' ,
+            github: '',
+            vk: '',
+            facebook: '',
+            instagram: '',
+            twitter: '',
+            website: '',
+            youtube: '',
+            mainLink: '',
         },
-        photos:{small:'string',
-        large: 'string' }
+        photos: {
+            small: '',
+            large: ''
+        }
     }
 }
 
-export const profileReducer = (state:ProfilePageType = initialState, action: ActionType) => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionType) => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
@@ -86,10 +91,10 @@ export const profileReducer = (state:ProfilePageType = initialState, action: Act
                 newPostText: action.newText
             }
         }
-        case  SET_USER_PROFILE: {
+        case SET_USER_PROFILE: {
             return {
                 ...state,
-               profile: action.profile 
+                profile: action.profile
             }
         }
 
@@ -98,10 +103,10 @@ export const profileReducer = (state:ProfilePageType = initialState, action: Act
 
     }
 }
-export let addPostAC =() => {
+export let addPostAC = () => {
     return {
         type: ADD_POST,
-        } as const
+    } as const
 }
 export let updateNewPostTextAC = (text: string) => {
     return {
@@ -109,7 +114,7 @@ export let updateNewPostTextAC = (text: string) => {
         newText: text
     } as const
 }
-export let setUserProfile = (profile:ProfileApiType) => {
+export let setUserProfile = (profile: ProfileApiType) => {
     return {
         type: SET_USER_PROFILE,
         profile
