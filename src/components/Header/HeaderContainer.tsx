@@ -12,8 +12,9 @@ import Header from './Header';
             withCredentials:true
            })
           .then(response => {
+          debugger
             if (response.data.resultCode === 0){
-              let {id,email, login}= response.data.data
+              let {id, email, login}= response.data.data
             this.props.setAuthUserData( id, email, login)
             }
 
@@ -21,24 +22,27 @@ import Header from './Header';
   }
 
     render(): React.ReactNode {
-      return <Header {...this.props}/>
+      return <Header authData={this.props} />
+    
     }
   }
-const mapStateToProps=(state: AppStateType)=>({
-  isAuth: state.auth.isAuth,
+const mapStateToProps=(state: AppStateType): AuthDataType=>({
+  id: state.auth.id,
+  email: state.auth.email,
   login: state.auth.login,
+  isAuth: state.auth.isAuth
 })   
 
-type MapStateToPropsType= {
-  isAuth: boolean
-  login:string
+export type AuthDataType= {
+  id: number | null,
+    email: string,
+    login: string,
+    isAuth: boolean,
 }
 type MapToDispatchPropsType={
   setAuthUserData:(userId:number, email:string,login:string)=>void
 }
-type HeaderContainerType= MapStateToPropsType & MapToDispatchPropsType
-
-
+export type HeaderContainerType= AuthDataType & MapToDispatchPropsType
 
 
 

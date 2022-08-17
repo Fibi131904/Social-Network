@@ -1,33 +1,29 @@
+import { AuthDataType } from "../components/Header/HeaderContainer"
+
 
 const SET_USER_DATA = "SET_USER_DATA"
-const UNFOLLOW = "UNFOLLOW"
 
 
 
-let initionState: UsersStateType = {
-      id: 0,
+
+const initionState: AuthDataType= {
+      id: null,
       email: '',
       login: '',
       isAuth: false
  }
-type UsersStateType = {
-    id: number,
-      email: string,
-      login: '',
-      isAuth: boolean
-}
 
-export const authReducer = (state: UsersStateType = initionState, action: ActionType):UsersStateType => {
+type ActionType = SetUserDataType
+
+export const authReducer = (state= initionState, action: ActionType):AuthDataType => {
+   
     switch (action.type) {
         case SET_USER_DATA: {
-            return {...state,
-                email: state.email,
-                id:state.id,
-                login:state.login,
-                isAuth: true
+                       return {...state,
+                ...action.payload,isAuth: true
         }
+    
     }
-      
         default: {
             return state
         }
@@ -36,16 +32,16 @@ export const authReducer = (state: UsersStateType = initionState, action: Action
 
 
 
-export const setAuthUserData=(userId:number, email:string,login:string)=>{
+export const setAuthUserData=(id:number, email:string, login:string)=>{
     return{
         type: SET_USER_DATA, 
-         data:{userId, email,login}
+         payload:{id, email,login}
     } as const
 }
 
 type SetUserDataType=ReturnType<typeof setAuthUserData>
 
-type ActionType = SetUserDataType
+
    
 
     
