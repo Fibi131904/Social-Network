@@ -16,11 +16,12 @@ export type ProfilePageType = {
 
 }
 export type PostDataType = {
-    id: string
+    id: number
     message: string
     likesCount: number
 }
 export type ProfileApiType = {
+    aboutMe: string
     userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: string
@@ -45,12 +46,12 @@ type photosType = {
 
 const initialState = {
     posts: [
-        { id: v1(), message: 'Hi, how are you?', likesCount: 15 },
-        { id: v1(), message: 'Hi, how are you?', likesCount: 20 }
+        { id: 1, message: 'Hi, how are you?', likesCount: 15 },
+        { id: 1, message: 'Hi, how are you?', likesCount: 20 }
     ] as Array<PostDataType>,
     newPostText: 'it-kamasutra.com',
     profile: {
-       
+        aboutMe: '',
         userId: 1,
         lookingForAJob: false,
         lookingForAJobDescription: '',

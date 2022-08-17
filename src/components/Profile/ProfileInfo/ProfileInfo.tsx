@@ -22,6 +22,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
       <div >
         <img alt="photos" src={props.profile.photos.large} />
       </div>
+      <div> Про меня: {props.profile.aboutMe}</div>
       <div>Контакты: {props.profile.contacts.facebook}</div>
       <div> {props.profile.lookingForAJob}</div>
       <div>Полное имя: {props.profile.fullName}</div>

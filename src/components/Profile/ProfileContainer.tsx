@@ -15,18 +15,14 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
     componentDidMount(){
       
       let userId=this.props.match.params.userId || 2;
-     
-      // if (!userId){
-      //   userId=2;
-     // }
-  
+       
     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+ userId)
    
             .then(response => {
-              
-                this.props.setUserProfile(response.data)
-               
+             this.props.setUserProfile(response.data)
+          
             });
+           
   }
   render() {
 
