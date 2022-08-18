@@ -1,4 +1,4 @@
-import Reacr from 'react'
+import React from 'react'
 import s from './users.module.css'
 import images from '../../assets/img/images.jpg'
 import { UserType } from '../../redux/users-reducer'
@@ -31,7 +31,8 @@ export let Users = (props: UsersPropsType) => {
     return <div>
         <div>
             {pages.map(p => {
-                <span className={props.currentPage === p ? s.selectPage : ''}
+                
+                <span key={p} className={props.currentPage === p ? s.selectPage : ''}
 
                     onClick={() => { props.onPageChanged(p) }} >{p}</span>
             })}
@@ -43,7 +44,7 @@ export let Users = (props: UsersPropsType) => {
             <span>
                 <div>
                     <NavLink to={'/profile' + u.id}>
-                        <img src={u.photos.small != null ? u.photos.small : images} alt="photo" className={s.photo} />
+                        <img src={u.photos.small != null ? u.photos.small : images} alt="fish" className={s.photo} />
                     </NavLink>
                 </div>
                 <div>
