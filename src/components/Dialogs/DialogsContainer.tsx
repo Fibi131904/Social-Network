@@ -1,12 +1,15 @@
-import { Dispatch } from 'redux';
+import { compose, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { DialogsPageType, sendMessageAC, updateNewMessageBodyAC } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { AppStateType } from '../../redux/redux-store';
+import { ComponentType } from 'react';
 
 
 type mapStateToPropsType = {
   dialogsPage: DialogsPageType
+  isAuth: boolean
+ 
 }
 type mapDispachToPropsType = {
   updateNewMessageBody: (updateText: string) => void
@@ -17,7 +20,8 @@ export type DialogsPropsType = mapStateToPropsType & mapDispachToPropsType
 
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
   return {
-    dialogsPage: state.dialogsPage
+    dialogsPage: state.dialogsPage,
+    isAuth: state.auth.isAuth
   }
 }
 
@@ -32,5 +36,6 @@ let mapDispachToProps = (dispatch: Dispatch): mapDispachToPropsType => {
   }
 }
 
-export const DialogsContainer = connect(mapStateToProps, mapDispachToProps)(Dialogs)
+//export const DialogsContainer = connect(mapStateToProps, mapDispachToProps)(Dialogs)
+export default compose<ComponentType>(connect(mapStateToProps,  mapDispachToProps))(Dialogs)
 

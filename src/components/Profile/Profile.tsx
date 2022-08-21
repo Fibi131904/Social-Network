@@ -1,12 +1,12 @@
 import React from 'react';
-import { ProfileApiType } from '../../redux/profile-reducer';
+import { ProfilePageType } from '../../redux/profile-reducer';
 import { MyPostsContainer } from './MyPost/MyPostsContainer';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 
 
 
 type ProfileType={
-  profile: ProfileApiType
+  profile: ProfilePageType
 }
 
  export const Profile = (props: ProfileType) => {

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Preloader } from '../../../Preloader';
-import { ProfileApiType } from '../../../redux/profile-reducer';
+import { ProfilePageType } from '../../../redux/profile-reducer';
+
 
 
 type ProfileInfoType = {
-  profile: ProfileApiType
+  profile: ProfilePageType
 }
 
 export const ProfileInfo = (props: ProfileInfoType) => {
@@ -20,9 +21,9 @@ export const ProfileInfo = (props: ProfileInfoType) => {
           src='https://tourweek.ru/file/image?path=uploads/sight/18_t54rAgvvhaQFjUQ5NgTbyOHOpn63n.png&w=940&h=430&fit=crop&s=2a24e865c38975022109fd67b873629c' />
       </div>
       <div >
-        <img alt="photos" src={props.profile.photos.large} />
+        <img alt="photos" src={props.profile.photos?.large} />
       </div>
-      <div> Про меня: {props.profile.aboutMe}</div>
+      <div>  {props.profile.userId}</div>
       <div>Контакты: {props.profile.contacts.facebook}</div>
       <div> {props.profile.lookingForAJob}</div>
       <div>Полное имя: {props.profile.fullName}</div>
