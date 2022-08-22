@@ -5,6 +5,7 @@ import { follow, setCurrentPage, unfollow, togglefollowingInProgress, getUsers, 
 import { Users } from './Users'
 import { Preloader } from '../../Preloader'
 import { compose } from 'redux'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
 
 
@@ -76,9 +77,9 @@ type MapToDispatchPropsType =
     }
 export type UsersPropsType = MapStateToPropsType & MapToDispatchPropsType
 
-
+let withRedirect= withAuthRedirect(UsersContainer)
 
 export default compose<ComponentType>(
     connect(mapStateToProps, {
         follow, unfollow, setCurrentPage, togglefollowingInProgress, getUsers
-    }))(UsersContainer)
+    }))(withRedirect)
