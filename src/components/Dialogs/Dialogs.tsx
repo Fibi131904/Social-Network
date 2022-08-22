@@ -5,7 +5,7 @@ import DialogItem from './DialogItem/DialogItem';
 import classes from './Dialogs.module.css';
 import Message from './Message/Message';
 
-type DialogPropsType= {
+type DialogsPropsType= {
   updateNewMessageBody: (updateText: string)=>void
   sendMessage:  () => void
   dialogsPage: DialogsPageType
@@ -14,7 +14,7 @@ type DialogPropsType= {
 }
 
 
-const Dialogs = (props: DialogPropsType) => {
+const Dialogs = (props: DialogsPropsType) => {
   const state = props.dialogsPage
 
   let dialogsElements = state.dialogs.map(d=><DialogItem name={d.name} key={d.id} id={d.id} />);

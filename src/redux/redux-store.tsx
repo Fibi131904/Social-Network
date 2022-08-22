@@ -7,15 +7,15 @@ import sidebarReducer from './sidebar-reducer'
 import { usersReducer } from "./users-reducer";
 
 
-export const rootReducers = combineReducers({
+export const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer
 })
-export type AppStateType = ReturnType<typeof rootReducers> //типизация стейта всего приложения
+export type AppStateType = ReturnType<typeof rootReducer> //типизация стейта всего приложения
 
-export let store = createStore(rootReducers, applyMiddleware(thunk))
+export let store = createStore(rootReducer, applyMiddleware(thunk))
 
 
