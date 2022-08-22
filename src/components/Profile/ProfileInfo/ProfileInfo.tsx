@@ -1,6 +1,7 @@
 import React from 'react';
 import { Preloader } from '../../../Preloader';
 import { ProfilePageType } from '../../../redux/profile-reducer';
+import { ProfileStatus } from './ProfileStatus';
 
 
 
@@ -15,13 +16,14 @@ export const ProfileInfo = (props: ProfileInfoType) => {
 
   return (
     <div>
-      <div >
+      {/* <div >
         <img
           alt="info"
           src='https://tourweek.ru/file/image?path=uploads/sight/18_t54rAgvvhaQFjUQ5NgTbyOHOpn63n.png&w=940&h=430&fit=crop&s=2a24e865c38975022109fd67b873629c' />
-      </div>
+      </div> */}
       <div >
         <img alt="photos" src={props.profile.photos?.large} />
+        <ProfileStatus status={'Hello my friends'}/>
       </div>
       <div>  {props.profile.userId}</div>
       <div>Контакты: {props.profile.contacts.facebook}</div>
