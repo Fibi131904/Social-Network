@@ -5,17 +5,21 @@ import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 
 
 
-type ProfileType={
+type ProfileType = {
   profile: ProfilePageType
+  status: string
+  updateStatus: (status: string) => void
 }
 
- export const Profile = (props: ProfileType) => {
- 
- 
+export const Profile = (props: ProfileType) => {
+
+
   return (
     <div>
-      <ProfileInfo profile={props.profile} />
-      <MyPostsContainer/>
+      <ProfileInfo profile={props.profile}
+        status={props.status}
+        updateStatus={props.updateStatus} />
+      <MyPostsContainer />
     </div>
   );
 
