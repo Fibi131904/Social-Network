@@ -8,7 +8,7 @@ import { ProfileStatus } from './ProfileStatus';
 type ProfileInfoType = {
   profile: ProfilePageType
   status: string
-  updateUserStatus: (status:string)=> void
+  updateStatus: (status:string)=> void
 }
 
 export const ProfileInfo = (props: ProfileInfoType) => {
@@ -23,7 +23,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
         <img alt="photos" src={props.profile.photos?.large} />
       </div>
 
-      <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} />
+      <ProfileStatus status={props.status} updateUserStatus={props.updateStatus} />
 
       
       <div>Контакты: {props.profile.contacts.facebook}</div>

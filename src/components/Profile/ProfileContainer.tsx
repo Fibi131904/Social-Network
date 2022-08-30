@@ -19,7 +19,7 @@ type MapStatePropsType = {
 type MapDispatchPropsType = {
   getUserProfile: (userId: number) => void
   getUserStatus: (userId: number) => void
-  updateStatus: (status: string) => void
+  updateUserStatus: (status: string) => void
 }
 type OnPropsType = MapStatePropsType & MapDispatchPropsType;
 
@@ -31,10 +31,9 @@ type PropsType = RouteComponentProps<PathParamsType> & OnPropsType;
 class ProfileContainer extends React.Component<PropsType>{
   componentDidMount() {
 
-    let userId = +this.props.match.params.userId || 2;
+    let userId = +this.props.match.params.userId || 23699;
 
     this.props.getUserProfile(userId);
-    
     this.props.getUserStatus(userId)
 
   }
@@ -42,7 +41,7 @@ class ProfileContainer extends React.Component<PropsType>{
     
     return (
 
-      <Profile profile={this.props.profile} status={this.props.status} updateUserStatus={this.props.updateStatus}/>
+      <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateUserStatus}/>
 
     );
   }
