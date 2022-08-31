@@ -21,7 +21,7 @@ const App: React.FC<AppPropsType> = ({}) => {
               <HeaderContainer/>
               <Navbar/>
               <div className="app-wrapper-content">
-                  <Route exact path={"/dialogs"} render={() => <DialogsContainer />}/>
+                  <Route exact path={"/dialogs"} render={() => <DialogsContainer />} />
                   <Route exact path={"/profile/:userId?"} render={() => <ProfileContainer />} />
                   <Route exact path={"/users"} render={() => <UsersContainer/>} />
                   <Route exact path={"/login"} render={() => <Login/>} />

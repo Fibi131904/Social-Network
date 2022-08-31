@@ -3,8 +3,9 @@ import thunk from "redux-thunk";
 import { authReducer } from "./auth-reducer";
 import { dialogsReducer } from "./dialogs-reducer";
 import { profileReducer } from "./profile-reducer";
-import sidebarReducer from './sidebar-reducer'
+import sidebarReducer from './sidebar-reducer';
 import { usersReducer } from "./users-reducer";
+import {reducer as formReducer} from 'redux-form';
 
 
 export const rootReducer = combineReducers({
@@ -12,8 +13,10 @@ export const rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer,
-    auth: authReducer
-})
+    auth: authReducer,
+    form: formReducer
+});
+
 export type AppStateType = ReturnType<typeof rootReducer> //типизация стейта всего приложения
 
 export let store = createStore(rootReducer, applyMiddleware(thunk))

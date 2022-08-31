@@ -5,13 +5,11 @@ import { AppStateType } from "./redux-store"
 import { ThunkType } from "./users-reducer"
 
 const ADD_POST = "ADD_POST"
-const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
 const SET_STATUS = 'SET_STATUS'
 
 export type ActionType =
     ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
     
@@ -49,7 +47,6 @@ const initialState = {
         { id: 1, message: 'Hi, how are you?', likesCount: 15 },
         { id: 1, message: 'Hi, how are you?', likesCount: 20 }
     ] as Array<PostDataType>,
-    newPostText: 'it-kamasutra.com',
     profile: null as ProfilePageType | null,
     status: '' as string,
     }
@@ -60,20 +57,13 @@ export const profileReducer = (state:  InitialStateType = initialState, action: 
         case ADD_POST: 
             let newPost = {
                 id: 4,
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: 0
             };
             return {
-                ...state, posts: [...state.posts, newPost],
-                newPostText: ''
+                ...state, posts: [...state.posts, newPost]
             }
-        
-        case UPDATE_NEW_POST_TEXT: 
-            return {
-                ...state,
-                newPostText: action.newText
-            }
-        
+                
         case SET_USER_PROFILE: 
             return {
                 ...state,
@@ -92,17 +82,13 @@ export const profileReducer = (state:  InitialStateType = initialState, action: 
 
     }
 }
-export const addPostAC = () => {
+export const addPostAC = (newPostText:string) => {
     return {
         type: ADD_POST,
+        newPostText
     } as const
 }
-export const updateNewPostTextAC = (text: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text
-    } as const
-}
+
 const setUserProfile = (profile: ProfilePageType) => {
     return {
         type: 'SET_USER_PROFILE',
