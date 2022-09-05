@@ -2,10 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
+import { REPL_MODE_SLOPPY } from 'repl'
 import { login } from '../../redux/auth-reducer'
 import { AppStateType } from '../../redux/redux-store'
 import { required } from '../../utils/validators/validators'
 import { Input } from '../common/FormsControls/FormsControls'
+import classes from './../common/FormsControls/FormsControls.module.css'
 
 type FormDataType = {
     email: string
@@ -34,6 +36,10 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <Field type={'checkbox'} name={'rememberMe'} component={Input}
                     validate={[required]} /> remember me
             </div>
+           {props.error && <div className={classes.formSummaryEerror}>
+                {props.error}
+            </div>
+}
             <div>
                 <button >Login</button>
             </div>
