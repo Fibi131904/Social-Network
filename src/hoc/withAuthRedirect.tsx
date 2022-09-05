@@ -11,7 +11,7 @@ const mapStateToPropsForRedirect = (state: AppStateType): mapStateToPropsForRedi
     isAuth: state.auth.isAuth
 }) as mapStateToPropsForRedirectPropsType
 
-export function withAuthRedirect<T>(Component: ComponentType<T>) {
+export function uthRedirect<T>(Component: ComponentType<T>) {
 
     class RedirectComponent extends React.Component<mapStateToPropsForRedirectPropsType> {
 
