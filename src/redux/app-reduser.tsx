@@ -13,7 +13,7 @@ export type InitialStateType = {
 
 const initialState: InitialStateType = {
    
-    initialized: false
+    initialized: true
 }
 
 type ActionType = ReturnType<typeof initializedSuccess>

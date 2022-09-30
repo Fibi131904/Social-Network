@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from './Post/Post';
-import classes from './MyPosts.module.css';
+import style from './MyPosts.module.css';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { PostDataType } from '../../../redux/profile-reducer';
 import { maxLengthCreator, required } from '../../../utils/validators/validators';
@@ -25,10 +25,10 @@ const MyPosts = (props: MyPostPropsType) => {
 
 
   return (
-    <div className={classes.postsBlock}>
+    <div className={style.postsBlock}>
       <h3> My Posts</h3>
       <AddNewPostFormRedux onSubmit={onAddPost}/>
-      <div className={classes.posts}>
+      <div className={style.posts}>
         {postElements}
       </div>
     </div>

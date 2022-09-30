@@ -33,6 +33,7 @@ export type InitialStateType = {
     currentPage:number,
     isFetching:boolean,
     followingInProgress:Array<number>
+    portionSize: number
 }
 
 const initionState: InitialStateType = {
@@ -41,7 +42,8 @@ const initionState: InitialStateType = {
     totalUsersCount:0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress:[]
+    followingInProgress:[],
+    portionSize: 10
     
 
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import classes from'./Header.module.css';
+import style from'./Header.module.css';
 
 
 type HeaderPropsType={
@@ -12,10 +12,10 @@ type HeaderPropsType={
 }
   const Header:React.FC<HeaderPropsType> = (props) => {
     return (
-    <header className={classes.header}>
+    <header className={style.header}>
         <img src='https://weblinks.ru/wp-content/uploads/2022/04/58.jpeg' alt='заставка'/>
     
-    <div className={classes.loginBlock}>
+    <div className={style.loginBlock}>
       {props.isAuth 
       ? <div>{ props.login} - <button onClick={props.logout}>Log out</button> </div>
       :<NavLink to={'/login'}>Login</NavLink>}

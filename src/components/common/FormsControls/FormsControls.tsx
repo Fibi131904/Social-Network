@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './FormsControls.module.css'
+import style from './FormsControls.module.css'
 
 
 type FormsControlsPropsType = {
@@ -11,7 +11,7 @@ export const Textarea: React.FC<FormsControlsPropsType> = ({input, meta, ...prop
 
     const hasError = meta.touched && meta.error;
     return (
-        <div className={classes.formControl + " " + (hasError ? classes.error: "")}>
+        <div className={style.formControl + " " + (hasError ? style.error: "")}>
             <div>
                 <textarea {...input} {...props}/>
             </div>
@@ -24,7 +24,7 @@ export const Input: React.FC<FormsControlsPropsType> = ({input, meta, ...props})
 
     const hasError = meta.touched && meta.error;
     return (
-        <div className={classes.formControl + " " + (hasError ? classes.error: "")}>
+        <div className={style.formControl + " " + (hasError ? style.error: "")}>
             <div>
                 <input {...input} {...props}/>
             </div>

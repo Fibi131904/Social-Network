@@ -15,14 +15,7 @@ class UsersContainer extends React.Component<UsersPropsType>{
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
-        //         this.props.toggleIsFetching(true)
-        // userAPI.getUsers(this.props.currentPage, this.props.pageSize)
-        // .then(data=>{
-        //             this.props.toggleIsFetching(false)
-        //             this.props.setUsers(data.items)
-        //             this.props.setUsersTotalCount(data.totalCount)
-        //         });
-    }
+          }
 
     onPageChanged = (pageNunber: number) => {
         this.props.getUsers(pageNunber, this.props.pageSize)
@@ -32,15 +25,16 @@ class UsersContainer extends React.Component<UsersPropsType>{
         return <>
             {this.props.isFetching ? <Preloader /> : ''}
             <Users
-                totalUsersCount={this.props.totalUsersCount}
+                totalItemsCount={this.props.totalUsersCount}
+                portionSize={this.props.portionSize}
                 pageSize={this.props.pageSize}
                 currentPage={this.props.currentPage}
                 onPageChanged={this.onPageChanged}
                 users={this.props.users}
                 followingInProgress={this.props.followingInProgress}
-                unfollow={this.props.unfollow}
-                follow={this.props.follow}
-            />
+                followThunkCreator={this.props.follow}
+                unfollowThunkCreator={this.props.unfollow}  
+                            />
         </>
     }
 }
@@ -53,6 +47,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress,
+        portionSize: state.usersPage.portionSize
     }
 }
 
@@ -65,6 +60,7 @@ type MapStateToPropsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: Array<number>
+    portionSize: number
 }
 
 type MapToDispatchPropsType =
