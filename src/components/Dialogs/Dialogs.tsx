@@ -1,6 +1,5 @@
 import React  from 'react';
 import { Redirect } from 'react-router-dom';
-import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { DialogsPageType } from '../../redux/dialogs-reducer';
 import { AddMessageFormRedux } from './AddMessageForm/AddMessageFormRedux';
 import DialogItem from './DialogItem/DialogItem';
@@ -40,19 +39,5 @@ if (!props.isAuth) return <Redirect to={'/login'}/>
     </div>
   )
 }
-
-// type AddMessageFormType={
-
-// }
-// const AddMessageForm: React.FC<InjectedFormProps<AddMessageFormType>>=(props:any)=>{
-//   return (
-//     <form onSubmit={props.handleSubmit}>
-//       <Field component='textarea' name='newMessageBody' placeholder='Enter your message'/>
-         
-//           <div><button >Send</button></div>
-//         </form> 
-//   )
-// }
-// export const AddMessageFormRedux = reduxForm<AddMessageFormType>({form: 'dialogAddMessageForm'}) (AddMessageForm)
 
 export default Dialogs;

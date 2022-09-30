@@ -6,6 +6,7 @@ import { profileReducer } from "./profile-reducer";
 import sidebarReducer from './sidebar-reducer';
 import { usersReducer } from "./users-reducer";
 import {reducer as formReducer} from 'redux-form';
+import { appReducer } from "./app-reduser";
 
 
 export const rootReducer = combineReducers({
@@ -14,7 +15,8 @@ export const rootReducer = combineReducers({
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    app: appReducer
 });
 
 export type AppStateType = ReturnType<typeof rootReducer> //типизация стейта всего приложения

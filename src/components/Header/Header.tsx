@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from'./Header.module.css';
-import {HeaderContainerType} from "./HeaderContainer";
+
 
 type HeaderPropsType={
   userId: number | null
@@ -13,7 +13,7 @@ type HeaderPropsType={
   const Header:React.FC<HeaderPropsType> = (props) => {
     return (
     <header className={classes.header}>
-        <img src='https://weblinks.ru/wp-content/uploads/2022/04/58.jpeg' />
+        <img src='https://weblinks.ru/wp-content/uploads/2022/04/58.jpeg' alt='заставка'/>
     
     <div className={classes.loginBlock}>
       {props.isAuth 
