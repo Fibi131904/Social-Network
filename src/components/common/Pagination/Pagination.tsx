@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import style from './Paginator.module.css';
+import style from './Pagination.module.css'
 import cn from 'classnames'
 
 

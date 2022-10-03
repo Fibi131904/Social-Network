@@ -1,6 +1,7 @@
 import React from "react";
 import { UserType } from "../../redux/users-reducer";
-import { Pagination } from '../common/Pagination/Pagination'
+import { Pagination } from "../common/Pagination/Pagination";
+
 
 import {User} from "./User";
 
