@@ -9,6 +9,25 @@ import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, get
 
 
 
+export type MapStateToPropsType = {
+    users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: Array<number>
+    portionSize: number
+}
+
+export type MapToDispatchPropsType =
+    {
+        setCurrentPage: (pageNunber: number) => void
+        togglefollowingInProgress: (isFetching: boolean, userId: number) => void,
+        requestUsers: (currentPage: number, pageSize: number) => void
+        follow: (userId: number) => void
+        unfollow: (userId: number) => void
+    }
+export type UsersPropsType = MapStateToPropsType & MapToDispatchPropsType
 
 
 
@@ -40,17 +59,7 @@ class UsersContainer extends React.Component<UsersPropsType>{
     }
 }
 
-// const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress,
-//         portionSize: state.usersPage.portionSize
-//     }
-// }
+
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         users: getUsers(state),
@@ -64,30 +73,8 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 
-type MapStateToPropsType = {
-    users: Array<UserType>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: Array<number>
-    portionSize: number
-}
-
-type MapToDispatchPropsType =
-    {
-        setCurrentPage: (pageNunber: number) => void
-        togglefollowingInProgress: (isFetching: boolean, userId: number) => void,
-        requestUsers: (currentPage: number, pageSize: number) => void
-        follow: (userId: number) => void
-        unfollow: (userId: number) => void
-    }
-export type UsersPropsType = MapStateToPropsType & MapToDispatchPropsType
-
-
-
 export default compose<ComponentType>(
     connect(mapStateToProps, {
-        follow, unfollow, setCurrentPage, togglefollowingInProgress, getUsers:requestUsers
+        setCurrentPage,togglefollowingInProgress, requestUsers, follow, unfollow
     })
 )(UsersContainer)
