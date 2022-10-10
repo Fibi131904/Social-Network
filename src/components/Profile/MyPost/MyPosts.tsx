@@ -15,9 +15,9 @@ type FormDataType = {
   newMessageText: string
 }
 
-const MyPosts = (props: MyPostPropsType) => {
+const MyPosts = React.memo((props: MyPostPropsType) => {
   let postElements =
-    props.posts.map(el => <Post id={el.id} message={el.message} likeCount={el.likesCount} />)
+    props.posts.map(el => <Post key={el.id} id={el.id} message={el.message} likeCount={el.likesCount} />)
 
   let onAddPost = (formData: FormDataType) => {
     props.addPost(formData.newMessageText)
@@ -33,7 +33,7 @@ const MyPosts = (props: MyPostPropsType) => {
       </div>
     </div>
   )
-}
+})
 let  maxLength10 = maxLengthCreator(10)
 
 const AddNewPostForm: React.FC<InjectedFormProps<FormDataType>> =(props)=>{
