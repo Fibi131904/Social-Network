@@ -5,7 +5,7 @@ import { follow, setCurrentPage, unfollow, togglefollowingInProgress, UserType, 
 import { Users } from './Users'
 import { Preloader } from '../../Preloader'
 import { compose } from 'redux'
-import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getPortionSize, getUsers } from '../../redux/users-selectors'
+import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getPortionSize, getUsers} from '../../redux/users-selectors'
 
 
 
@@ -88,6 +88,6 @@ export type UsersPropsType = MapStateToPropsType & MapToDispatchPropsType
 
 export default compose<ComponentType>(
     connect(mapStateToProps, {
-        follow, unfollow, setCurrentPage, togglefollowingInProgress, requestUsers
+        follow, unfollow, setCurrentPage, togglefollowingInProgress, getUsers:requestUsers
     })
 )(UsersContainer)
