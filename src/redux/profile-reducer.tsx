@@ -7,11 +7,13 @@ import { ThunkType } from "./users-reducer"
 const ADD_POST = "ADD_POST"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
 const SET_STATUS = 'SET_STATUS'
+const DELETE_POST = 'DELETE_POST'
 
 export type ActionType =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof deletePost>
     
 
 
@@ -45,7 +47,9 @@ export type InitialStateType = typeof initialState
 const initialState = {
     posts: [
         { id: 1, message: 'Hi, how are you?', likesCount: 15 },
-        { id: 1, message: 'Hi, how are you?', likesCount: 20 }
+        { id: 2, message: 'Hi!', likesCount: 11 },
+        { id: 3, message: 'Hello', likesCount: 20 },
+        { id: 4, message: 'Yes', likesCount: 2 }
     ] as Array<PostDataType>,
     profile: null as ProfilePageType | null,
     status: '' as string,
@@ -75,6 +79,11 @@ export const profileReducer = (state:  InitialStateType = initialState, action: 
                 ...state,
                status: action.status
             }
+        case DELETE_POST: 
+            return {
+                ...state,
+               posts: state.posts.filter(p=> p.id!== action.postId)
+            }
         
 
         default:
@@ -99,6 +108,12 @@ const setStatus = (status: string) => {
     return {
         type: 'SET_STATUS',
         status: status
+    } as const
+}
+export const deletePost = (postId: number) => {
+    return {
+        type: 'DELETE_POST',
+        postId
     } as const
 }
 export type ThuhkType = ThunkAction<void, AppStateType, unknown, ActionType>
