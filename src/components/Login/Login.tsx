@@ -6,7 +6,7 @@ import { login } from '../../redux/auth-reducer'
 import { AppStateType } from '../../redux/redux-store'
 import { required } from '../../utils/validators/validators'
 import { Input } from '../common/FormsControls/FormsControls'
-import classes from './../common/FormsControls/FormsControls.module.css'
+import style from '../Login/Login.module.css'
 
 type FormDataType = {
     email: string
@@ -35,7 +35,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <Field type={'checkbox'} name={'rememberMe'} component={Input}
                     validate={[required]} /> remember me
             </div>
-           {props.error && <div className={classes.formSummaryEerror}>
+           {props.error && <div className={style.formSummaryEerror}>
                 {props.error}
             </div>
 }
@@ -58,7 +58,7 @@ export const Login = (props: MapDispatchPropsType & MapStatePropsType) => {
         return <Redirect to={'/profile'} />
     }
     return (
-        <div>
+        <div className={style.loginPage}>
             <h1> LOGIN</h1>
             <LoginReduxForm onSubmit={onSubmit} />
         </div>

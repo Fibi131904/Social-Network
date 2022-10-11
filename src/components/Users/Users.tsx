@@ -3,7 +3,7 @@ import { UserType } from "../../redux/users-reducer";
 import { Pagination } from "../common/Pagination/Pagination";
 
 
-import {User} from "./User";
+import { User } from "./User";
 
 type PropsType = {
     users: Array<UserType>
@@ -28,13 +28,12 @@ export const Users = (props: PropsType) => {
                 onPageChanged={props.onPageChanged}
                 portionSize={props.portionSize}
             />
-            {
-                props.users.map(u => <User user={u}
-                                           follow={props.followThunkCreator}
-                                           unfollow={props.unfollowThunkCreator}
-                                           followingInProgress={props.followingInProgress}
-                    />
-                )
+            {props.users.map(u => <User user={u}
+                follow={props.followThunkCreator}
+                unfollow={props.unfollowThunkCreator}
+                followingInProgress={props.followingInProgress}
+            />
+            )
             }
         </div>
     )

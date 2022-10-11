@@ -7,28 +7,30 @@ type FormsControlsPropsType = {
     meta: any
 }
 
-export const Textarea: React.FC<FormsControlsPropsType> = ({input, meta, ...props}) => {
+export const Textarea: React.FC<FormsControlsPropsType> = ({input, meta:{touched, error}, ...props}) => {
 
-    const hasError = meta.touched && meta.error;
+    const hasError = touched && error;
     return (
         <div className={style.formControl + " " + (hasError ? style.error: "")}>
             <div>
                 <textarea {...input} {...props}/>
             </div>
-            {hasError && <span>{meta.error}</span>}
+            {hasError && <span>{error}</span>}
         </div>
     );
 };
 
-export const Input: React.FC<FormsControlsPropsType> = ({input, meta, ...props}) => {
+export const Input: React.FC<FormsControlsPropsType> = ({input,meta:{touched, error}, ...props}) => {
 
-    const hasError = meta.touched && meta.error;
+    const hasError = touched && error;
     return (
         <div className={style.formControl + " " + (hasError ? style.error: "")}>
             <div>
                 <input {...input} {...props}/>
             </div>
-            {hasError && <span>{meta.error}</span>}
+            {hasError && <span>{error}</span>}
         </div>
     );
 };
+
+

@@ -16,17 +16,16 @@ import { Preloader } from './Preloader';
 
 
 
-
 type MapToDispatchPropsType = {
     initializeApp: () => void
 }
-type MapStateToPropsType={
+type MapStateToPropsType = {
     initialized: boolean
 }
 
 export type AppType = MapToDispatchPropsType & MapStateToPropsType;
 
- class App extends React.Component<AppType>{
+class App extends React.Component<AppType>{
 
     componentDidMount() {
         this.props.initializeApp();
@@ -37,17 +36,17 @@ export type AppType = MapToDispatchPropsType & MapStateToPropsType;
         }
         return (
             <div className="app-wrapper">
-            <HeaderContainer/>
-            <Navbar/>
-            <div className={'app-wrapper-content'}>
-                <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
-                <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
-                <Route path={"/users"} render={() => <UsersContainer/>}/>
-                <Route path={"/login"} render={() => <Login/>}/>
+                <HeaderContainer />
+                <Navbar />
+                <div className={'app-wrapper-content'}>
+                    <Route path={"/dialogs"} render={() => <DialogsContainer />} />
+                    <Route path={"/profile/:userId?"} render={() => <ProfileContainer />} />
+                    <Route path={"/users"} render={() => <UsersContainer />} />
+                    <Route path={"/login"} render={() => <Login />} />
+                </div>
             </div>
-        </div>
-    );
-}
+        );
+    }
 }
 const MapStateToProps = (state: AppStateType) => ({
     initialized: state.app.initialized
