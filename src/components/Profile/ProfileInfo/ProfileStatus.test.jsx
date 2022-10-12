@@ -22,4 +22,12 @@ describe('ProfileStatus component', () => {
         let span = root.findByType('span')
         expect(span.innerText).toBe('it-kamasutra.com');
     });
+    test('input should be disablayed in editeMode instead of span', () => {
+        const component = create(<ProfileStatus status="it-kamasutra.com" updateUserStatus={() => { }} />);
+        const root = component.root;
+        let span = root.findByType('span')
+        span.props.onDoudleClick();
+        let input = root.findByType('input');
+        expect(input.props.value).toBe('it-kamasutra.com');
+    });
 });
