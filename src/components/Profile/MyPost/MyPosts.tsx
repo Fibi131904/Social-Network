@@ -34,20 +34,18 @@ const MyPosts = React.memo((props: MyPostPropsType) => {
     </div>
   )
 })
-let  maxLength10 = maxLengthCreator(10)
+let maxLength10 = maxLengthCreator(10)
 
-const AddNewPostForm: React.FC<InjectedFormProps<FormDataType>> =(props)=>{
+const AddNewPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
-    <div>
-    <Field name={'newMessageText'} component={Textarea}  placeholder={'Enter message'}
-    validate={[required, maxLength10]}/>
-      
-    </div>
-    <div>
-      <button>Add post</button>
-    </div>
-  </form>
+      <div>
+        <Field name={'newMessageText'} component={Textarea} placeholder={'Enter message'} validate={[required, maxLength10]} />
+      </div>
+      <div>
+        <button>Add post</button>
+      </div>
+    </form>
   )
 }
 const AddNewPostFormRedux = reduxForm<FormDataType>({form: 'ProfileAddNewPostForm'}) (AddNewPostForm)
