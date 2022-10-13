@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/samurai-way-main/static/css/main.6be08c6d.css",
-    "main.js": "/samurai-way-main/static/js/main.789b827f.js",
-    "static/css/519.25fd99b4.chunk.css": "/samurai-way-main/static/css/519.25fd99b4.chunk.css",
-    "static/js/519.00b44324.chunk.js": "/samurai-way-main/static/js/519.00b44324.chunk.js",
-    "static/css/639.ea098d0f.chunk.css": "/samurai-way-main/static/css/639.ea098d0f.chunk.css",
-    "static/js/639.8872a613.chunk.js": "/samurai-way-main/static/js/639.8872a613.chunk.js",
-    "static/js/317.aad76e53.chunk.js": "/samurai-way-main/static/js/317.aad76e53.chunk.js",
-    "static/media/preloader.gif": "/samurai-way-main/static/media/preloader.a1a996746e5e48352c81.gif",
-    "index.html": "/samurai-way-main/index.html",
-    "main.6be08c6d.css.map": "/samurai-way-main/static/css/main.6be08c6d.css.map",
-    "main.789b827f.js.map": "/samurai-way-main/static/js/main.789b827f.js.map",
-    "519.25fd99b4.chunk.css.map": "/samurai-way-main/static/css/519.25fd99b4.chunk.css.map",
-    "519.00b44324.chunk.js.map": "/samurai-way-main/static/js/519.00b44324.chunk.js.map",
-    "639.ea098d0f.chunk.css.map": "/samurai-way-main/static/css/639.ea098d0f.chunk.css.map",
-    "639.8872a613.chunk.js.map": "/samurai-way-main/static/js/639.8872a613.chunk.js.map",
-    "317.aad76e53.chunk.js.map": "/samurai-way-main/static/js/317.aad76e53.chunk.js.map"
+    "main.css": "/Social-Network/static/css/main.6be08c6d.css",
+    "main.js": "/Social-Network/static/js/main.2ac41298.js",
+    "static/css/519.25fd99b4.chunk.css": "/Social-Network/static/css/519.25fd99b4.chunk.css",
+    "static/js/519.00b44324.chunk.js": "/Social-Network/static/js/519.00b44324.chunk.js",
+    "static/css/639.ea098d0f.chunk.css": "/Social-Network/static/css/639.ea098d0f.chunk.css",
+    "static/js/639.8872a613.chunk.js": "/Social-Network/static/js/639.8872a613.chunk.js",
+    "static/js/317.aad76e53.chunk.js": "/Social-Network/static/js/317.aad76e53.chunk.js",
+    "static/media/preloader.gif": "/Social-Network/static/media/preloader.a1a996746e5e48352c81.gif",
+    "index.html": "/Social-Network/index.html",
+    "main.6be08c6d.css.map": "/Social-Network/static/css/main.6be08c6d.css.map",
+    "main.2ac41298.js.map": "/Social-Network/static/js/main.2ac41298.js.map",
+    "519.25fd99b4.chunk.css.map": "/Social-Network/static/css/519.25fd99b4.chunk.css.map",
+    "519.00b44324.chunk.js.map": "/Social-Network/static/js/519.00b44324.chunk.js.map",
+    "639.ea098d0f.chunk.css.map": "/Social-Network/static/css/639.ea098d0f.chunk.css.map",
+    "639.8872a613.chunk.js.map": "/Social-Network/static/js/639.8872a613.chunk.js.map",
+    "317.aad76e53.chunk.js.map": "/Social-Network/static/js/317.aad76e53.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6be08c6d.css",
-    "static/js/main.789b827f.js"
+    "static/js/main.2ac41298.js"
   ]
 }
