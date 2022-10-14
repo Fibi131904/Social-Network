@@ -6,7 +6,7 @@ type ProfileStatusType = {
     updateUserStatus: (status: string) => void
 }
 
-export const ProfileStatus = (props: ProfileStatusType) => {
+export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
    
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
@@ -30,7 +30,7 @@ export const ProfileStatus = (props: ProfileStatusType) => {
     <div>
         {!editMode &&
             <div >
-                <span onDoubleClick={activateEditMode} >{props.status || '---'}</span>
+              <b>Status:</b>  <span onDoubleClick={activateEditMode} >{props.status || '---'}</span>
             </div>
         }
         {editMode &&

@@ -24,8 +24,7 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
   return {
     addPost: (newPostText:string) => {
        dispatch(addPostAC(newPostText)) },
-    
-  }
+      }
 }
 
 export const MyPostsContainer = connect<mapStateToPropsType,mapDispatchToPropsType,{},AppStateType>(mapStateToProps, mapDispatchToProps)(MyPosts);

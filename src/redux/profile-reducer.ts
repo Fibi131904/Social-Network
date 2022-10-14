@@ -1,4 +1,4 @@
-import { profile } from "console"
+import { profile } from 'console';
 import { Dispatch } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 import { profileAPI, usersAPI } from "../api/api"
@@ -11,19 +11,21 @@ const SET_STATUS = 'SET_STATUS'
 const DELETE_POST = 'DELETE_POST'
 const SAVE_PHOTO_SUCCESS= 'SAVE_PHOTO_SUCCESS'
 
+
 export type ActionType =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof deletePost>
     | ReturnType<typeof savePhotoSuccess>
+  
     
 
 
     export type PostDataType = {
         id: number
         message: string
-        likeCount: number
+        likesCount: number     
     }
     export type ProfilePageType = {
         aboutMe: string
@@ -54,10 +56,10 @@ export type InitialStateType = typeof initialState
 
 const initialState = {
     posts: [
-        { id: 1, message: 'Hi, how are you?', likeCount: 15 },
-        { id: 2, message: 'Hi!', likeCount: 11 },
-        { id: 3, message: 'Hello', likeCount: 20 },
-        { id: 4, message: 'Yes', likeCount: 2 }
+        { id: 1, message: 'Ho ho', likesCount: 4 },
+        { id: 2, message: 'yo ho', likesCount: 15 },
+        { id: 3, message: 'Hello', likesCount: 20 },
+        { id: 4, message: 'Yes', likesCount: 2 }
     ] as Array<PostDataType>,
     profile: null as ProfilePageType | null,
     status: '' as string,
@@ -70,7 +72,7 @@ export const profileReducer = (state:  InitialStateType = initialState, action: 
         let newPost = {
             id: 6,
             message: action.newPostText,
-            likeCount: 0,
+            likesCount: 0,
         };
         return {
             ...state,
@@ -98,7 +100,7 @@ export const profileReducer = (state:  InitialStateType = initialState, action: 
                 ...state,
                 profile: {...state.profile!, photos: action.photos}
             }
-        
+                   
                default:
             return state;
 
@@ -135,6 +137,8 @@ export const savePhotoSuccess = (photos: PhotosType) => {
         photos
     } as const
 }
+
+
 export type ThuhkType = ThunkAction<void, AppStateType, unknown, ActionType>
 export type ThunkDispatchType = ThunkDispatch<AppStateType, unknown, ActionType>
 
@@ -159,6 +163,12 @@ export const savePhoto = (file: string): ThuhkType => async (dispatch: ThunkDisp
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
+export const saveProfile = (profile: string): ThuhkType => async (dispatch: ThunkDispatchType) => {
+    let response = await profileAPI.saveProfile(profile)
+    if (response.data.resultCode === 0) {
+       // dispatch(savePhotoSuccess(response.data.data.profile))
     }
 }
 

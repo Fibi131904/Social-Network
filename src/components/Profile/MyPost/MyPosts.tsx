@@ -17,7 +17,7 @@ type FormDataType = {
 
 const MyPosts = React.memo((props: MyPostPropsType) => {
   let postElements =
-    props.posts.map(el => <Post key={el.id} id={el.id} message={el.message} likeCount={el.likeCount} />)
+    props.posts.map(el => <Post key={el.id} id={el.id} message={el.message} likesCount={el.likesCount} />)
 
   let onAddPost = (formData: FormDataType) => {
     props.addPost(formData.newMessageText)
