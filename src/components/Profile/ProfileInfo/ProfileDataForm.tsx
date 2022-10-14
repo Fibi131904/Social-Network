@@ -2,12 +2,17 @@ import React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import { ProfilePageType } from '../../../redux/profile-reducer';
 import { createField, Input, Textarea } from '../../common/FormsControls/FormsControls';
+import style from './ProfileInfo.module.css';
 
 
 const ProfileDataForm = (props: InjectedFormProps<ProfilePageType>) => {
-    const {handleSubmit, initialValues, error} = props
+    const {initialValues} = props
     return <form onSubmit={props.handleSubmit}>
     <div><button onClick={()=>{}}>Save</button></div>
+    {props.error && <div className={style.formSummaryEerror}>
+                {props.error}
+            </div>
+}
      <div>
        <b>FullName:</b> {createField('Full name', 'fullName',[], Input)}
      </div>
@@ -26,7 +31,7 @@ const ProfileDataForm = (props: InjectedFormProps<ProfilePageType>) => {
      </div>
      <div>
             <b>Contacts: </b> {Object.keys(initialValues.contacts ?? {}).map(key => {
-            return <div key={key} >
+            return <div key={key} className={style.contact}>
                 <b>{key}: {createField(key, 'contacts.' + key, [], Input)}</b>
             </div>
         })}

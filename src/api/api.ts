@@ -1,4 +1,4 @@
-import { savePhoto } from './../redux/profile-reducer';
+import { ProfilePageType, savePhoto } from './../redux/profile-reducer';
 import axios from "axios";
 
 
@@ -51,7 +51,7 @@ export const profileAPI = {
             }
         })
     },
-    saveProfile(profile: string) {
+    saveProfile(profile: ProfilePageType | null) {
         return instance.put(`profile`, profile)
     }
 }

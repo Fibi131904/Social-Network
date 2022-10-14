@@ -33,8 +33,8 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
       }
   }
 
-  const onSubmit = (formData: ProfilePageType | null) => {
-    
+  const onSubmit =  (formData: ProfilePageType | null) => {
+    saveProfile(formData)
       setEditMode(false)
   }
 
