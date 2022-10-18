@@ -5,6 +5,8 @@ import { Profile } from './Profile';
 import { getUserProfile, updateUserStatus, getUserStatus, savePhoto, saveProfile } from '../../redux/profile-reducer';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+
+
 export type ProfilePageType = {
   aboutMe?: string
   contacts: ContactsType
@@ -95,7 +97,7 @@ this.refreshProfile()
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
-  authorizedUserId: state.auth.data.id,
+  authorizedUserId: state.auth.userId,
   isAuth: state.auth.isAuth
    }) as MapStatePropsType
 

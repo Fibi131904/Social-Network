@@ -15,7 +15,7 @@ const instance = axios.create(
 );
 
 export const usersAPI = {
-    async getUsers(currentPage = 1, pageSize = 10) {
+    async getUsers(currentPage : number, pageSize : number) {
         const response = await instance.get(`users?page=${currentPage}&count=${pageSize}`);
         return response.data;
     },
@@ -26,7 +26,7 @@ export const usersAPI = {
     unfollow(userId:number) {
         return instance.delete(`follow/${userId}`)
     },
-    getProfile( userId:number){
+    getProfile( userId:number | null){
     console.warn('Obsolute method.Please profileAPI object.')
         return   profileAPI.getProfile(userId)
           
@@ -34,10 +34,10 @@ export const usersAPI = {
 }
 
 export const profileAPI = {
-    getProfile(userId: number) {
+    getProfile(userId: number | null) {
         return instance.get(`profile/${userId}`)
     },
-    getStatus(userId: number) {
+    getStatus(userId: string) {
         return instance.get(`profile/status/` + userId)
     },
     updateStatus(status: string) {

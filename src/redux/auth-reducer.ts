@@ -7,44 +7,31 @@ import { AppStateType } from "./redux-store"
 
 const SET_USER_DATA = "network/auth/SET_USER_DATA"
 
-export type InitialStateType = {
-    data: {
-        id: number,
-        email: string,
-        login: string
-    }
-    resultCode: number,
-    messages: Array<string>,
+export type AuthStateType = {
+    userId: number | null,
+    email: string | null,
+    login: string | null,
     isAuth: boolean,
-    userId: number | null
 }
 
-const initialState: InitialStateType = {
-    data: {
-        id: 0,
-        email: '',
-        login: ''
-    },
-    resultCode: 0,
-    messages: [],
+const initialState: AuthStateType = {
+    userId: null,
+    email: null,
+    login: null,
     isAuth: false,
-    userId: null
 }
 
 type ActionUsersType = ReturnType<typeof setUserData> | ReturnType<typeof stopSubmit>
 
 
 
-export const authReducer = (state: InitialStateType = initialState, action: ActionUsersType): InitialStateType => {
+export const authReducer = (state: AuthStateType = initialState, action: ActionUsersType): AuthStateType => {
 
     switch (action.type) {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.payload,
-                resultCode: 0,
-                messages: [],
-                isAuth: true
+                ...action.payload
             }
         default:
             return state
@@ -53,10 +40,10 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
 }
 
 
-export const setUserData = (data: { id: number, email: string, login: string, isAuth: boolean }) => {
+export const setUserData =  (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => {
     return {
         type: SET_USER_DATA,
-        payload: { data }
+        payload: {userId, email, login, isAuth}
     } as const
 }
 
@@ -69,7 +56,7 @@ export const getAuthUserData = (): AuthThunkType => async (dispatch: ThunkDispat
     let response = await authAPI.me()
     if (response.data.resultCode === 0) {
         let { id, email, login } = response.data.data
-        dispatch(setUserData({ id, email, login, isAuth: true }))
+        dispatch(setUserData( id, email, login,  true ))
     }
 }
 
@@ -91,7 +78,7 @@ export const logout = (): AuthThunkType => {
         authAPI.logout()
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    dispatch(setUserData({ id: 0, email: '', login: '', isAuth: false }))
+                    dispatch(setUserData(null, null, null, false))
                 }
 
             });

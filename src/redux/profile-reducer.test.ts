@@ -2,13 +2,14 @@ import { ProfilePageType } from "../components/Profile/ProfileContainer";
 import { addPostAC, deletePost, PostDataType, profileReducer } from "./profile-reducer";
 
 const initialState = {
+    messageForNewPost: '',
     posts: [
-        { id: 1, message: 'Hi, how are you?', likesCount: 15 },
-        { id: 2, message: 'Hi!', likesCount: 11 },
+        { id: 1, message: 'Ho ho', likesCount: 4 },
+        { id: 2, message: 'yo ho', likesCount: 15 },
         { id: 3, message: 'Hello', likesCount: 20 },
         { id: 4, message: 'Yes', likesCount: 2 }
     ] as Array<PostDataType>,
-    profile: null as ProfilePageType | null,
+    profile: {} as ProfilePageType,
     status: '' as string,
 }
 
