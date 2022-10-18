@@ -1,6 +1,6 @@
 import React from 'react';
-import { ProfilePageType } from '../../redux/profile-reducer';
 import { MyPostsContainer } from './MyPost/MyPostsContainer';
+import { ProfilePageType } from './ProfileContainer';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 
 

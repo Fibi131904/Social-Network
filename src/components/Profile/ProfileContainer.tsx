@@ -2,10 +2,34 @@ import { connect } from 'react-redux'
 import React, { ComponentType } from 'react';
 import { AppStateType } from '../../redux/redux-store';
 import { Profile } from './Profile';
-import { ProfilePageType, getUserProfile, updateUserStatus, getUserStatus, savePhoto, saveProfile } from '../../redux/profile-reducer';
+import { getUserProfile, updateUserStatus, getUserStatus, savePhoto, saveProfile } from '../../redux/profile-reducer';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+export type ProfilePageType = {
+  aboutMe?: string
+  contacts: ContactsType
+  lookingForAJob: boolean
+  lookingForAJobDescription: string
+  fullName: string
+  userId: number
+  photos?: PhotosType
+}
 
+export type ContactsType = {
+  facebook: string
+  website: string
+  vk: string
+  twitter: string
+  instagram: string
+  youtube: string
+  github: string
+  mainLink: string
+}
+
+export type PhotosType = {
+  small: string
+  large: string
+}
 type PathParamsType = {
   userId: string
 }

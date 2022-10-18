@@ -1,4 +1,5 @@
-import { addPostAC, deletePost, PostDataType, ProfilePageType, profileReducer } from "./profile-reducer";
+import { ProfilePageType } from "../components/Profile/ProfileContainer";
+import { addPostAC, deletePost, PostDataType, profileReducer } from "./profile-reducer";
 
 const initialState = {
     posts: [

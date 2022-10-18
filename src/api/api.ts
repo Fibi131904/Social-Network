@@ -1,5 +1,6 @@
-import { ProfilePageType, savePhoto } from './../redux/profile-reducer';
+
 import axios from "axios";
+import { ProfilePageType } from "../components/Profile/ProfileContainer";
 
 
 
@@ -14,9 +15,9 @@ const instance = axios.create(
 );
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-            .then(response => response.data)
+    async getUsers(currentPage = 1, pageSize = 10) {
+        const response = await instance.get(`users?page=${currentPage}&count=${pageSize}`);
+        return response.data;
     },
 
     follow(userId:number) {

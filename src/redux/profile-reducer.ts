@@ -2,6 +2,7 @@ import { Dispatch } from "redux"
 import { stopSubmit } from "redux-form"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 import { profileAPI, usersAPI } from "../api/api"
+import { PhotosType, ProfilePageType } from "../components/Profile/ProfileContainer"
 import { AppStateType } from "./redux-store"
 import { ThunkType } from "./users-reducer"
 
@@ -27,31 +28,7 @@ export type ActionType =
         message: string
         likesCount: number     
     }
-    export type ProfilePageType = {
-        aboutMe: string
-        contacts: ContactsType
-        lookingForAJob: boolean
-        lookingForAJobDescription: string
-        fullName: string
-        userId: number
-        photos: PhotosType
-    }
     
-    export type PhotosType = {
-        small: string
-        large: string
-    }
-    
-    export type ContactsType = {
-        facebook: string
-        website: string
-        vk: string
-        twitter: string
-        instagram: string
-        youtube: string
-        github: string
-        mainLink: string
-    }
 export type InitialStateType = typeof initialState
 
 const initialState = {
@@ -140,12 +117,12 @@ export const savePhoto = (file: string): ThuhkType => async (dispatch: ThunkDisp
     }
 }
 export const saveProfile = (profile: ProfilePageType | null): ThunkType => async (dispatch: ThunkDispatchType, getState) => {
-  
-    const userId = getState().auth.userId
+    debugger
     const response = await profileAPI.saveProfile(profile)
+    
     if (response.data.resultCode === 0) {
-         // @ts-ignore
-        dispatch(getUserProfile(userId))
+        
+        dispatch(getUserProfile(Number(getState().auth.userId)))
     } else {
          // @ts-ignore
         dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}));
