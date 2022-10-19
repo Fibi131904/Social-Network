@@ -12,6 +12,7 @@ type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
+   
 }
 type MapDispatchPropsType = {
     login: (email: string, password: string, rememberMe: boolean) => void
@@ -19,6 +20,7 @@ type MapDispatchPropsType = {
 
 type MapStatePropsType = {
     isAuth: boolean
+ 
 }
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
@@ -34,7 +36,10 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             <div>
                 <Field type={'checkbox'} name={'rememberMe'} component={Input}
                     validate={[required]} /> remember me
+
             </div>
+
+
            {props.error && <div className={style.formSummaryEerror}>
                 {props.error}
             </div>
@@ -66,6 +71,7 @@ export const Login = (props: MapDispatchPropsType & MapStatePropsType) => {
 }
 const mapStateToProps = (state: AppStateType) => {
     return {
+       
         isAuth: state.auth.isAuth
     }
 }

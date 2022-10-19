@@ -11,6 +11,7 @@ import { ContactsType, ProfilePageType } from '../ProfileContainer';
 
 
 
+
 type ProfileInfoPropsType = {
     profile: ProfilePageType | null
     status: string
@@ -25,7 +26,7 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
     const [editMode, setEditMode] = useState(false);
 
     if (!props.profile) {
-        return <Preloader />
+        return <Preloader/>
     }
 
     const onMainPhotoSelected = (e: { target: any }) => {
@@ -33,31 +34,25 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
             props.savePhoto(e.target.files[0])
         }
     }
-
+   
     const onSubmit = (formData: ProfilePageType | null) => {
-        console.log(formData)
-        saveProfile(formData)
-        setEditMode(false)
+     saveProfile(formData)
+     setEditMode(false)
     }
 
     return (
         <div>
-            <div>
-                <img
-                    src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'
-                    alt={''} />
-            </div>
+            
             <div className={style.description}>
                 <img src={props.profile.photos?.large || userPhoto} className={style.mainPhoto} alt={''} />
+
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
 
                 {editMode
                     ? <ProfileDataForm initialValues={props.profile} onSubmit={onSubmit} />
-                    : <ProfileData profile={props.profile}
-                        isOwner={props.isOwner}
-                        goToEditMode={() => {
-                            setEditMode(true)
-                        }} />}
+                  : <ProfileData goToEditMode={() => {
+                        setEditMode(true)
+                    }} profile={props.profile} isOwner={props.isOwner}/>}
 
                 <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateStatus} />
             </div>
@@ -107,4 +102,5 @@ const Contact: React.FC<ContactType> = ({ contactTitle, contactValue }) => {
     return <div ><b>{contactTitle}: </b> {contactValue}</div>
 }
 
-export default ProfileInfo;
+
+

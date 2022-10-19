@@ -1,6 +1,6 @@
 import { stopSubmit } from "redux-form"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { profileAPI, usersAPI } from "../api/api"
+import {  profileAPI, usersAPI } from "../api/api"
 import { PhotosType, ProfilePageType } from "../components/Profile/ProfileContainer"
 import { AppStateType } from "./redux-store"
 import { ThunkType } from "./users-reducer"
@@ -130,11 +130,11 @@ export const saveProfile = (profile: ProfilePageType | null): ThunkType => async
     debugger
     const userId = getState().auth.userId
     const response = await profileAPI.saveProfile(profile)
-    if (response.data.resultCode === 0) {
+       if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId))
     } else {
          // @ts-ignore
-        dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}));
+        dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0] }));
         return Promise.reject(response.data.messages[0]);
     }
 }

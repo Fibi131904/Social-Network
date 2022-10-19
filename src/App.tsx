@@ -11,9 +11,10 @@ import { initializeApp } from './redux/app-reduser';
 import { AppStateType } from './redux/redux-store';
 import { Preloader } from './Preloader';
 import { withSuspense } from './hoc/withSuspense';
+import ProfileContainer from './components/Profile/ProfileContainer';
 
 const DialogsContainer= React.lazy(()=> import('./components/Dialogs/DialogsContainer'));
-const ProfileContainer = React.lazy(()=> import('./components/Profile/ProfileContainer'));
+
 
 
 
@@ -41,7 +42,7 @@ class App extends React.Component<AppType>{
                 <Navbar />
                 <div className={'app-wrapper-content'}>
                     <Route path={"/dialogs"} render={withSuspense(DialogsContainer)} />
-                    <Route path={"/profile/:userId?"} render={withSuspense(ProfileContainer)} />
+                    <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
                     <Route path={"/users"} render={() => <UsersContainer />} />
                     <Route path={"/login"} render={() => <Login />} />
                 </div>
