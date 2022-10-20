@@ -4,7 +4,6 @@ import Navbar from './components/Navbar/Navbar';
 import { Route, withRouter } from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { initializeApp } from './redux/app-reduser';
@@ -12,6 +11,7 @@ import { AppStateType } from './redux/redux-store';
 import { Preloader } from './Preloader';
 import { withSuspense } from './hoc/withSuspense';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import { LoginForm } from './components/Login/Login';
 
 const DialogsContainer= React.lazy(()=> import('./components/Dialogs/DialogsContainer'));
 
@@ -44,7 +44,7 @@ class App extends React.Component<AppType>{
                     <Route path={"/dialogs"} render={withSuspense(DialogsContainer)} />
                     <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
                     <Route path={"/users"} render={() => <UsersContainer />} />
-                    <Route path={"/login"} render={() => <Login />} />
+                    <Route path={"/login"} render={() => <LoginForm />} />
                 </div>
             </div>
         );
