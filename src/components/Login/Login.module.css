@@ -1,15 +1,32 @@
-.formSummaryEerror {
-    border: 2px solid red;
-    padding: 5px;
-    color: red
-}
+
 
 .loginPage {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 100px;
+      
+}
+
+
+.wraper{
+  border: 1px solid;
+  padding: 20px;
+ 
+  
 }
 
 button {
     margin-top: 20px;
+}
+
+
+.formSummaryEerror {
+    border: 2px solid red;
+    padding: 5px;
+    color: red
+}
+.rememberMe {
+    text-align: start;
+    margin: 10px 0;
 }
