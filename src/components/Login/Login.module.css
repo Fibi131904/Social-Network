@@ -1,23 +1,63 @@
+.loginContainer {
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
+.loginWelcom {
+    padding-top: 20px;
+}
 
-.loginPage {
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+
+.img {
+    height: 300px;
+}
+
+.loginForm {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 20px;
+    background: #ffffff;
+    color: #51595e;
+    height: 600px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 100px;
-      
+     
+}
+
+.loginTitle{
+    margin: 50px;
 }
 
 
-.wraper{
-  border: 1px solid;
-  padding: 20px;
- 
+.loginButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
   
+
 }
 
-button {
-    margin-top: 20px;
+.loginDiscription {
+    text-align: center;
+    line-height: 0;
+    font-size: 18px;
+
+}
+
+.loginFormik {
+    justify-content: space-around;
+    text-align: center;
+    line-height: 5;
+   
+
 }
 
 
@@ -25,8 +65,4 @@ button {
     border: 2px solid red;
     padding: 5px;
     color: red
-}
-.rememberMe {
-    text-align: start;
-    margin: 10px 0;
 }

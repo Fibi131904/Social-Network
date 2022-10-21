@@ -26,8 +26,8 @@ import style from './Navbar.module.css';
           <div className={style.item}>
             <NavLink to='/settings'>Settings</NavLink>
           </div>
-          <div>
-          <NavLink to='/Frends'>Frends</NavLink>
+          <div className={style.item}>
+          <NavLink to='/frends'>Frends</NavLink>
           </div>
         </nav>
 

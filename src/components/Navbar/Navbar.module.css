@@ -1,22 +1,32 @@
 .nav {
-    grid-area: n;
-    background-color: rgba(218, 241, 13, 0.966);
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(248, 213, 58, 0.966);
     padding: 20px;
-
 }
 
 .item a {
+    
+    background: cornflowerblue;
     color: white;
+    border: 1px solid cornflowerblue;;
+    border-radius: 5px;
+    margin-bottom: 10px;
     text-decoration: none;
     padding: 5px 10px;
     display: inline-block;
+    width: 70px;
+    text-align: center;
 }
 
-a.active {
-    color: goldenrod;
+a:active {
     text-decoration: none;
 }
 
+a:hover {
+   
+    border: 1px solid #ffffff
+}
  
    
     

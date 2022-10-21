@@ -1,9 +1,64 @@
+.UsersContainer {
+    max-height: 80vh;
+   
+}
+
+
+.userItem {
+    display: flex;
+     flex-direction: column;
+     justify-content: center;
+    border: 1px solid #0389c9;
+    background: #0389c9;
+    border-radius: 10px ;
+    max-width: 200px;
+    height: 250px;
+    margin: 10px;
+}
+
+.userProfile {
+    margin: 5px;
+    padding: 5px;
+    
+    text-align: center;
+    flex-wrap: wrap;
+    min-height: 20%;
+   
+}
+.userName {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.userInfo {
+color: #ffffff9f;
+}
+
+.photoBlock {
+    text-align: center;
+}
 .photo {
     width: 100px;
     height: 100px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-right: 20px;
+    border-radius: 10px;
+   
 }
+button {
+    margin-top: 10px;
+   text-align: center;
+   border-radius: 5px;
+  }
+  button {
+    font-size: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #ffffff;
+    border: 1px solid rgba(248, 213, 58, 0.966);
+    background: rgba(248, 213, 58, 0.966);
+}
+
+button:hover {
+    color: cornflowerblue;
+}
+

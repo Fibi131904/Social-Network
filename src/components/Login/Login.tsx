@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { login } from '../../redux/auth-reducer'
 import { AppStateType } from '../../redux/redux-store'
+import charcter from '../../assets/img/charcter.png'
 import style from './Login.module.css';
 
 
@@ -53,46 +54,67 @@ export const LoginForm = () => {
         return <Redirect to={'/profile'} />
     }
     return (
-        <div className={style.loginPage} >
-<div className={style.wraper}>
-            <div className={style.info}>
-                <p>To log in get registered
-                    <a href={'https://social-network.samuraijs.com/'}
-                        target={'_blank'} rel="noopener noreferrer"> here
-                    </a>
-                </p>
-                <p>or use common test account credentials:</p>
-                <p>Email: free@samuraijs.com</p>
-                <p>Password: free</p>
+        <div className={style.loginContainer} >
+            <div className={style.loginWelcom} >
 
-            </div>
-
-            <form onSubmit={formik.handleSubmit} >
-            <Space direction="vertical">
-                <Input placeholder='Login'
-                    {...formik.getFieldProps('email')}
-                />
-                {formik.touched.email && formik.errors.email ? <div style={{ color: 'red' }}>{formik.errors.email}</div> : null}
-                <Input.Password placeholder="password" 
-                  {...formik.getFieldProps('password')}
-                />
-                {formik.touched.password && formik.errors.password && <div style={{ color: 'red' }}>{formik.errors.password}</div>}
-                <div  className={style.rememberMe}>
-                    <Checkbox 
-                        checked={formik.values.rememberMe}
-                        {...formik.getFieldProps('rememberMe')}
-                    />Remember me
+                <div>
+                    <img src={charcter} className={style.img} alt='' />
+                    <h1>Welcome back!</h1>
                 </div>
-
-                {captchaUrl && <img src={captchaUrl} alt={'captcha'} />}
-                {captchaUrl && <input  {...formik.getFieldProps('captchaUrl')}
-                />}
-                <Button type={'default'} htmlType='submit' shape={'default'}>
-                    Login
-                </Button>
-                </Space>
-            </form>
             </div>
+
+                <div className={style.loginForm}>
+                    
+                        <div className={style.loginDiscription}>
+                           <div className={style.loginTitle} >
+                            <h2 >Login</h2>
+                            </div> 
+                            <p>To log in get registered
+                                <a href={'https://social-network.samuraijs.com/'}
+                                    target={'_blank'} rel="noopener noreferrer"> here
+                                </a>
+                            </p>
+                            <p>or use common test account credentials:</p>
+                            <p>Email: free@samuraijs.com</p>
+                            <p>Password: free</p>
+                        </div>
+
+
+                        <form onSubmit={formik.handleSubmit} className={style.loginFormik}>
+                            <Space direction="vertical">
+                           
+                                <Input placeholder='Login'
+                                    {...formik.getFieldProps('email')}
+                                />
+                                 
+                                {formik.touched.email && formik.errors.email ? <div style={{ color: 'red' }}>{formik.errors.email}</div> : null}
+                                <Input.Password placeholder="password"
+                                    {...formik.getFieldProps('password')}
+                                />
+                                {formik.touched.password && formik.errors.password && <div style={{ color: 'red' }}>{formik.errors.password}</div>}
+                              <div>
+                                    <Checkbox
+                                        checked={formik.values.rememberMe}
+                                        {...formik.getFieldProps('rememberMe')}
+                                    />Remember me
+                               </div>
+
+                                {captchaUrl && <img src={captchaUrl} alt={'captcha'} />}
+                                {captchaUrl && <input  {...formik.getFieldProps('captchaUrl')}
+                                />}
+                                <div className={style.loginButton}>
+                                    <Button type={'primary'} htmlType='submit' shape={'default'}>
+                                        Login
+                                    </Button>
+                                </div>
+                            </Space>
+                        </form>
+
+
+
+                   
+                </div>
+            
         </div>
     )
 
