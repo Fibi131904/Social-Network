@@ -5,42 +5,20 @@ import { Profile } from './Profile';
 import { getUserProfile, updateUserStatus, getUserStatus, savePhoto, saveProfile } from '../../redux/profile-reducer';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import { ContactsType, PhotosType, ProfilePageType } from '../../types/types';
 
 
-export type ProfilePageType = {
-  aboutMe?: string
-  contacts: ContactsType
-  lookingForAJob: boolean
-  lookingForAJobDescription: string
-  fullName: string
-  userId: number
-  photos?: PhotosType
-}
 
-export type ContactsType = {
-  facebook: string
-  website: string
-  vk: string
-  twitter: string
-  instagram: string
-  youtube: string
-  github: string
-  mainLink: string
-}
 
-export type PhotosType = {
-  small: string
-  large: string
-}
 type PathParamsType = {
   userId: string
 }
+
 type MapStatePropsType = {
   profile: ProfilePageType
   status: string
   authorizedUserId: number
-  isAuth: boolean
- 
+  isAuth: boolean 
 }
 
 type MapDispatchPropsType = {

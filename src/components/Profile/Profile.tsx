@@ -1,6 +1,6 @@
 import React from 'react';
+import { ProfilePageType } from '../../types/types';
 import { MyPostsContainer } from './MyPost/MyPostsContainer';
-import { ProfilePageType } from './ProfileContainer';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 
 

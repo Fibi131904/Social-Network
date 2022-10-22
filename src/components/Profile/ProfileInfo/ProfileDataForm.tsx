@@ -1,7 +1,7 @@
 import React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
+import { ProfilePageType } from '../../../types/types';
 import { createField, Input, Textarea } from '../../common/FormsControls/FormsControls';
-import { ProfilePageType } from '../ProfileContainer';
 import style from './ProfileInfo.module.css';
 
 

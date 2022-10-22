@@ -1,13 +1,13 @@
 import React  from 'react';
 import { Redirect } from 'react-router-dom';
-import { DialogsPageType } from '../../redux/dialogs-reducer';
+import { InitialDialogsPageType } from '../../redux/dialogs-reducer';
 import { AddMessageFormRedux } from './AddMessageForm/AddMessageFormRedux';
 import DialogItem from './DialogItem/DialogItem';
 import style from './Dialogs.module.css';
 import Message from './Message/Message';
 
 type DialogsPropsType = {
-  dialogsPage: DialogsPageType
+  dialogsPage: InitialDialogsPageType
   isAuth: boolean
   sendMessage: (newMessageBody:string) => void
 }

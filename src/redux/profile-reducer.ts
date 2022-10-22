@@ -1,7 +1,7 @@
 import { stopSubmit } from "redux-form"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import {  profileAPI, usersAPI } from "../api/api"
-import { PhotosType, ProfilePageType } from "../components/Profile/ProfileContainer"
+import { profileAPI, usersAPI } from "../api/api"
+import { PhotosType, PostDataType, ProfilePageType  } from "../types/types"
 import { AppStateType } from "./redux-store"
 import { ThunkType } from "./users-reducer"
 
@@ -22,13 +22,6 @@ export type ActionType =
 
 
 
-
-export type PostDataType = {
-    id: number
-    message: string
-    likesCount: number
-}
-
 export type InitialStateType = typeof initialState
 
 const initialState = {
@@ -40,7 +33,7 @@ const initialState = {
         { id: 4, message: 'Yes', likesCount: 2 }
     ] as Array<PostDataType>,
     profile: {} as ProfilePageType,
-    status: '' as string,
+    status: ''
 }
 
 
@@ -94,7 +87,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
 
 export const addPostAC = (newPostText: string) => ({ type: ADD_POST, newPostText } as const)
 export const setUserProfile = (profile: ProfilePageType) => ({ type: 'SET_USER_PROFILE', profile: profile } as const)
-export const setUserPhotos = (photos: PhotosType | null) => ({ type: 'SET_USER_PHOTOS', photos} as const)
+export const setUserPhotos = (photos: PhotosType | null) => ({ type: 'SET_USER_PHOTOS', photos } as const)
 export const setStatus = (status: string) => ({ type: 'SET_STATUS', status: status } as const)
 export const deletePost = (postId: number) => ({ type: 'DELETE_POST', postId } as const)
 export const savePhotoSuccess = (photos: PhotosType) => ({ type: 'SAVE_PHOTO_SUCCESS', photos } as const)
@@ -126,15 +119,15 @@ export const savePhoto = (file: string): ThuhkType => async (dispatch: ThunkDisp
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
-export const saveProfile = (profile: ProfilePageType | null): ThunkType => async (dispatch: ThunkDispatchType, getState) =>{
+export const saveProfile = (profile: ProfilePageType | null): ThunkType => async (dispatch: ThunkDispatchType, getState) => {
     debugger
     const userId = getState().auth.userId
     const response = await profileAPI.saveProfile(profile)
-       if (response.data.resultCode === 0) {
+    if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId))
     } else {
-         // @ts-ignore
-        dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0] }));
+        // @ts-ignore
+        dispatch(stopSubmit('edit-profile', { _error: response.data.messages[0] }));
         return Promise.reject(response.data.messages[0]);
     }
 }

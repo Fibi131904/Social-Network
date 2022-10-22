@@ -6,8 +6,7 @@ import style from './ProfileInfo.module.css';
 import { ProfileStatusWithHooks } from './ProfileStatusWithHooks';
 import { Button } from 'antd';
 import ProfileDataForm from './ProfileDataForm';
-import { ContactsType, ProfilePageType } from '../ProfileContainer';
-
+import { ProfilePageType, ContactsType } from '../../../types/types';
 
 
 

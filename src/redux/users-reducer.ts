@@ -1,5 +1,5 @@
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import {  usersAPI } from "../api/api"
+import { usersAPI } from "../api/api"
 import { AppStateType } from "./redux-store"
 
 
@@ -9,7 +9,7 @@ const UNFOLLOW = "UNFOLLOW"
 const SET_USERS = "SET_USERS"
 const SET_CURRENT_PAGE = "SET_CURREN_PAGE"
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
-const TOGGLE_IS_FETCHING='TOGGLE_IS_FETCHING'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 const TOGGLE_IS_FOLOWING_PROGRESS = 'TOGGLE_IS_FOLOWING_PROGRESS'
 
 export type UserType = {
@@ -22,39 +22,31 @@ export type UserType = {
     photos: { small: string, large: string } | null
     name: string
 }
+
 type UsersLocation = {
     city: string
     country: string
 }
-export type InitialStateType = {
-    users: Array<UserType>,
-    pageSize: number,
-    totalUsersCount:number,
-    currentPage:number,
-    isFetching:boolean,
-    followingInProgress:Array<number>
-    portionSize: number
-}
 
-const initionState: InitialStateType = {
-    users: [],
+export type InitialStateType = typeof initionState
+
+const initionState = {
+    users: [] as Array<UserType>,
     pageSize: 5,
-    totalUsersCount:0,
+    totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress:[],
+    followingInProgress: [] as Array<number>,
     portionSize: 10
-    
-
 }
 
-export const usersReducer = (state: InitialStateType = initionState, action: ActionUsersType):InitialStateType=> {
+export const usersReducer = (state: InitialStateType = initionState, action: ActionUsersType): InitialStateType => {
     switch (action.type) {
         case FOLLOW: {
-            return {...state, users: state.users.map(u => u.id === action.payload.usersId ? {...u, followed:true} : u)}
+            return { ...state, users: state.users.map(u => u.id === action.payload.usersId ? { ...u, followed: true } : u) }
         }
         case UNFOLLOW: {
-            return {...state, users: state.users.map(u => u.id === action.payload.usersId ? {...u, followed:false} : u)}
+            return { ...state, users: state.users.map(u => u.id === action.payload.usersId ? { ...u, followed: false } : u) }
         }
         case SET_USERS: {
             return { ...state, users: action.payload.users }
@@ -150,7 +142,7 @@ export const requestUsers = (page: number, pageSize: number): ThunkType => async
 };
 
 
-const followUnfollowFlow = async(dispatch:ThunkDispatchType, userId:number, apiMethod: (arg0: number) => any, actionCreator: (arg0: number) => any)=>{
+const followUnfollowFlow = async (dispatch: ThunkDispatchType, userId: number, apiMethod: (arg0: number) => any, actionCreator: (arg0: number) => any) => {
     dispatch(togglefollowingInProgress(true, userId))
 
     let response = await apiMethod(userId)
@@ -158,7 +150,7 @@ const followUnfollowFlow = async(dispatch:ThunkDispatchType, userId:number, apiM
         dispatch(actionCreator(userId))
     }
     dispatch(togglefollowingInProgress(false, userId))
-} 
+}
 
 export const follow = (userId: number): ThunkType => {
     return async (dispatch: ThunkDispatchType) => {
@@ -171,7 +163,7 @@ export const unfollow = (userId: number): ThunkType => {
         followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(userId), unfollowSucces)
     }
 }
-   
+
     
 
 

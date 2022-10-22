@@ -1,13 +1,13 @@
 import { compose, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { DialogsPageType, sendMessageAC } from '../../redux/dialogs-reducer';
+import { InitialDialogsPageType, sendMessageAC } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { AppStateType } from '../../redux/redux-store';
 import { ComponentType } from 'react';
 
 
 type mapStateToPropsType = {
-  dialogsPage: DialogsPageType
+  dialogsPage: InitialDialogsPageType
  
  
 }

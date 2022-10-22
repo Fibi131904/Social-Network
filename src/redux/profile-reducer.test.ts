@@ -1,5 +1,5 @@
-import { ProfilePageType } from "../components/Profile/ProfileContainer";
-import { addPostAC, deletePost, PostDataType, profileReducer } from "./profile-reducer";
+import { PostDataType,  ProfilePageType  } from "../types/types";
+import { addPostAC, deletePost, profileReducer } from "./profile-reducer";
 
 const initialState = {
     messageForNewPost: '',

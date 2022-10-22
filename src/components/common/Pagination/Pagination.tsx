@@ -8,13 +8,14 @@ type PropsType = {
     pageSize: number
     currentPage: number
     onPageChanged: (pageNumber: number) => void
-    portionSize: number
+    portionSize?: number
 }
 
-export const Pagination: React.FC<PropsType> = ({totalUsersCount, pageSize, currentPage, onPageChanged, portionSize = 10}) => {
+export const Pagination: React.FC<PropsType> = ({ totalUsersCount, pageSize, currentPage,
+    onPageChanged, portionSize = 10 }) => {
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
 
-    let pages: number[] = [];
+    let pages: Array<number> = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
@@ -37,7 +38,7 @@ export const Pagination: React.FC<PropsType> = ({totalUsersCount, pageSize, curr
                     .map(p => {
                         return <span
                             key={p}
-                            className={cn({[style.selectedPage]: currentPage === p}, style.pageNumber)}
+                            className={cn({ [style.selectedPage]: currentPage === p }, style.pageNumber)}
                             onClick={() => {
                                 onPageChanged(p)
                             }}>{p}</span>
@@ -45,7 +46,7 @@ export const Pagination: React.FC<PropsType> = ({totalUsersCount, pageSize, curr
             </div>
             {portionCount > portionNumber &&
                 <button className={style.button}
-                                    onClick={() => setPortionNumber(portionNumber + 1)}>NEXT</button>}
+                    onClick={() => setPortionNumber(portionNumber + 1)}>NEXT</button>}
         </div>
     );
 };

@@ -24,7 +24,7 @@ h1 {
     padding: 20px;
     background: #ffffff;
     color: #51595e;
-    height: 600px;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
      

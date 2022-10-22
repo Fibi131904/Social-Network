@@ -1,6 +1,7 @@
 
 import axios from "axios";
-import { ProfilePageType } from "../components/Profile/ProfileContainer";
+import { ProfilePageType } from "../types/types";
+
 
 
 
@@ -15,22 +16,22 @@ const instance = axios.create(
 );
 
 export const usersAPI = {
-    async getUsers(currentPage : number, pageSize : number) {
+    async getUsers(currentPage: number, pageSize: number) {
         const response = await instance.get(`users?page=${currentPage}&count=${pageSize}`);
         return response.data;
     },
 
-    follow(userId:number) {
+    follow(userId: number) {
         return instance.post(`follow/${userId}`)
     },
-    unfollow(userId:number) {
+    unfollow(userId: number) {
         return instance.delete(`follow/${userId}`)
     },
-    getProfile( userId:number | null){
-    console.warn('Obsolute method.Please profileAPI object.')
-        return   profileAPI.getProfile(userId)
-          
-       }
+    getProfile(userId: number | null) {
+        console.warn('Obsolute method.Please profileAPI object.')
+        return profileAPI.getProfile(userId)
+
+    }
 }
 
 export const profileAPI = {
@@ -56,23 +57,43 @@ export const profileAPI = {
         return instance.put(`profile`, profile)
     }
 }
+export enum ResultCodesEnum {
+Success= 0,
+Error= 1,
+}
 
+export enum ResultCodeForCaptchaEnum {
+CaptchaIsRequired=10
+}
 
-export const authAPI= {
-    me(){
-        return  instance.get(`auth/me`)
-       },
-    login(email:string, password: string, rememberMe: boolean = false, captcha: string | null= null){
-        return  instance.post(`auth/login`, {email, password, rememberMe, captcha})
-       },
-    logout(){
-        return  instance.delete(`auth/login`)
-       }
+type MeResponseType = {
+    data:{id:number, email: string, login:string}
+    resultCode: ResultCodesEnum
+    messages: Array<string>
+}
+
+type LoginResponseType = {
+    data:{userId:number}
+    resultCode: ResultCodesEnum | ResultCodeForCaptchaEnum
+    messages: Array<string>
+}
+
+export const authAPI = {
+    async me() {
+        const response = await instance.get<MeResponseType>(`auth/me`);
+        return response.data;
+    },
+    async login(email: string, password: string, rememberMe: boolean = false, captcha: string | null = null) {
+        const response = await instance.post<LoginResponseType>(`auth/login`, { email, password, rememberMe, captcha });
+        return response.data;
+    },
+    logout() {
+        return instance.delete(`auth/login`)
+    }
 
 }
-export const securityAPI= {
-    getCaptchaUrl(){
-        return  instance.get(`security/get-captcha-url`)
-       }
-   
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`)
+    }
 }

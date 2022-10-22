@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { addPostAC, PostDataType } from '../../../redux/profile-reducer';
+import { addPostAC} from '../../../redux/profile-reducer';
 import { AppStateType } from '../../../redux/redux-store';
+import { PostDataType } from '../../../types/types';
 import MyPosts from './MyPosts';
 
 type mapStateToPropsType = {
