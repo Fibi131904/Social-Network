@@ -90,7 +90,7 @@ export const authAPI = {
         return response.data;
     },
     async login(email: string, password: string,
-         rememberMe: boolean = false, captcha: string | null = null) {
+         rememberMe: boolean = false, captcha: null | string = null) {
         const response = await instance.post<LoginResponseType>(`auth/login`, { email,
              password, rememberMe, captcha });
         return response.data;

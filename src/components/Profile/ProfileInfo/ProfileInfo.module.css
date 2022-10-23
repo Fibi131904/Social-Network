@@ -1,16 +1,76 @@
-.mainPhoto {
-    margin: 20px;
-    max-width: 200px;
-    border-radius: 100px;
+.container {
+    max-height: 100vh;
+    border: 1px solid;
 }
 
-.description {
-    margin-bottom: 10px;
+.wraper {
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    border-radius: 10px;
+    margin: 20px;
     padding: 0 10px;
+    border: 1px solid;
 }
-.formSummaryEerror{
-    border: 1px solid red;
+
+.fonImg {
+    height: 70vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
 }
-.contact {
-    padding-left: 10px;
+
+.containerInfo {
+    display: flex;
+    border: 1px solid;
+
+    height: 500px;
+    min-width: 400px;
 }
+
+
+.profileContainer {
+    color: #fff;
+    margin: 2px;
+}
+
+.containerPhoto {
+    margin-bottom: 8px;
+}
+
+.mainPhoto {
+    margin: 5px 4px 5px 4px;
+    max-width: 200px;
+    border-radius: 10px;
+}
+
+.PhotoBorder {
+    margin: 15px 15px 5px 20px;
+    max-width: 208px;
+    border: 4px solid #0389c9;
+    background: #0389c9;
+    border-radius: 10px;
+}
+
+.status {
+    color: #fff;
+    padding: 5px;
+}
+
+.fotoChancge {
+    border: 1px solid;
+}
+
+input[type="file"] {
+    display: none;
+    border: 1px solid #ccc;
+    display: inline-block;
+    cursor: pointer;
+    width: 180px;
+}
+
+
+
+
+

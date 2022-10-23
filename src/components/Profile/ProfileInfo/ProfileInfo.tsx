@@ -7,7 +7,7 @@ import { ProfileStatusWithHooks } from './ProfileStatusWithHooks';
 import { Button } from 'antd';
 import ProfileDataForm from './ProfileDataForm';
 import { ProfilePageType, ContactsType } from '../../../types/types';
-
+import fon from '../../../assets/img/fon.jpg'
 
 
 
@@ -38,22 +38,42 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
      saveProfile(formData)
      setEditMode(false)
     }
-
+    const backFon = {
+        backgroundImage: `url(${fon})`,
+    }
     return (
-        <div>
+        <div className={style.container}>
+
+            <div className={style.fonImg} style={backFon}>
+
+                <div className={style.containerInfo}>
+                   <div>
+                    <div className={style.containerPhoto}>
+                    <div className={style.fotoChancge}>
+                            {props.isOwner && <input type={'file'}  onChange={onMainPhotoSelected} />}
+                        </div>
+                        <div className={style.PhotoBorder}>
+                        <img src={props.profile.photos?.large || userPhoto} className={style.mainPhoto} alt={''} />
+                        </div>
+                        
+                    </div>
+                    <div className={style.status}>
+                        <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateStatus} />
+                    </div>
+                    </div> 
+                    <div className={style.profileContainer}>
+                       
+                        {editMode
+                            ? <ProfileDataForm initialValues={props.profile} onSubmit={onSubmit} />
+                            : <ProfileData goToEditMode={() => {
+                                setEditMode(true)
+                            }} profile={props.profile} isOwner={props.isOwner} />}
+
+                    </div>
+
+                </div>
+
             
-            <div className={style.description}>
-                <img src={props.profile.photos?.large || userPhoto} className={style.mainPhoto} alt={''} />
-
-                {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
-
-                {editMode
-                    ? <ProfileDataForm initialValues={props.profile} onSubmit={onSubmit} />
-                  : <ProfileData goToEditMode={() => {
-                        setEditMode(true)
-                    }} profile={props.profile} isOwner={props.isOwner}/>}
-
-                <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateStatus} />
             </div>
         </div>
     )
@@ -71,10 +91,8 @@ type ProfileDataType = {
 }
 
 const ProfileData: React.FC<ProfileDataType> = ({ profile, isOwner, goToEditMode }) => {
-    return <div>
-        {isOwner && <div>
-            <Button onClick={goToEditMode}>edit</Button>
-        </div>}
+    return <div className={style.ProfileInfoContainer}>
+      
         <div>
             <b>Full name: </b> {profile.fullName}
         </div>
@@ -94,6 +112,9 @@ const ProfileData: React.FC<ProfileDataType> = ({ profile, isOwner, goToEditMode
                 return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]} />
             })}
         </div>
+        {isOwner && <div>
+            <Button onClick={goToEditMode}>edit</Button>
+        </div>}
     </div>
 }
 

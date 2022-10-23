@@ -2,14 +2,16 @@ import React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import { ProfilePageType } from '../../../types/types';
 import { createField, Input, Textarea } from '../../common/FormsControls/FormsControls';
-import style from './ProfileInfo.module.css';
+import style from './ProfileDataForm.module.css';
 
 
 const ProfileDataForm = (props: InjectedFormProps<ProfilePageType>) => {
   const { initialValues, handleSubmit, error } = props
 
-  return <form onSubmit={handleSubmit}>
-    <div><button onClick={handleSubmit}>Save</button></div>
+  return (
+    <div >
+  <form onSubmit={handleSubmit}>
+   
     {error && <div className={style.formSummaryEerror}>
       {error}
     </div>
@@ -37,8 +39,12 @@ const ProfileDataForm = (props: InjectedFormProps<ProfilePageType>) => {
         </div>
       })}
     </div>
+    <div >
+      <button onClick={handleSubmit}>Save</button>
+    </div>
   </form>
-
+  </div>
+  )
 }
 
 const ProfileDataFormReduxForm = reduxForm<ProfilePageType>({ form: 'edit-profile' })(ProfileDataForm)
