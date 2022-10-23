@@ -1,5 +1,6 @@
 
 import axios from "axios";
+import { UserType } from "../redux/users-reducer";
 import { ProfilePageType } from "../types/types";
 
 
@@ -14,10 +15,15 @@ const instance = axios.create(
         }
     }
 );
-
+export type GetItemsType = {
+    items: Array<UserType>
+    totalCount: number
+    error: string | null
+}
 export const usersAPI = {
-    async getUsers(currentPage: number, pageSize: number) {
-        const response = await instance.get(`users?page=${currentPage}&count=${pageSize}`);
+     async getUsers(currentPage: number, pageSize: number,
+         term: string = '', friend: null | boolean = null) {
+        const response = await instance.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}$term=${term}`+ (friend == null? '' : `&friend=${friend}`))
         return response.data;
     },
 
@@ -83,8 +89,10 @@ export const authAPI = {
         const response = await instance.get<MeResponseType>(`auth/me`);
         return response.data;
     },
-    async login(email: string, password: string, rememberMe: boolean = false, captcha: string | null = null) {
-        const response = await instance.post<LoginResponseType>(`auth/login`, { email, password, rememberMe, captcha });
+    async login(email: string, password: string,
+         rememberMe: boolean = false, captcha: string | null = null) {
+        const response = await instance.post<LoginResponseType>(`auth/login`, { email,
+             password, rememberMe, captcha });
         return response.data;
     },
     logout() {
