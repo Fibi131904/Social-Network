@@ -93,23 +93,23 @@ type ProfileDataType = {
 const ProfileData: React.FC<ProfileDataType> = ({ profile, isOwner, goToEditMode }) => {
     return <div className={style.ProfileInfoContainer}>
       
-        <div>
-            <b>Full name: </b> {profile.fullName}
+        <div className={style.itemAbout}>
+            <b className={style.item}>Full name: </b> {profile.fullName}
         </div>
-        <div>
-            <b>Looking For A Job: </b>{profile.lookingForAJob ? 'yes' : 'no'}
+        <div className={style.itemAbout}>
+            <b className={style.item}>Looking For A Job: </b>{profile.lookingForAJob ? 'yes' : 'no'}
         </div>
         {profile.lookingForAJob &&
-            <div>
-                <b>My professional skills: </b> {profile.lookingForAJobDescription}
+           <div className={style.itemAbout}>
+                <b className={style.item}>My professional skills: </b> {profile.lookingForAJobDescription}
             </div>}
-        <div>
-            <b>About Me: </b> {profile.aboutMe}
+            <div className={style.itemAbout}>
+            <b className={style.item}>About Me: </b> {profile.aboutMe}
         </div>
         <div>
-            <b>Contacts: </b> {profile.contacts && Object.keys(profile.contacts).map(key => {
+            <b className={style.item}>Contacts: </b> {profile.contacts && Object.keys(profile.contacts).map(key => {
 
-                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]} />
+                return <b className={style.item}><Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]} /></b>
             })}
         </div>
         {isOwner && <div>

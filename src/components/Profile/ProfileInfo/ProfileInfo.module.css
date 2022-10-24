@@ -31,7 +31,7 @@
 
 
 .profileContainer {
-    color: #fff;
+   
     margin: 2px;
 }
 
@@ -68,6 +68,18 @@ input[type="file"] {
     display: inline-block;
     cursor: pointer;
     width: 180px;
+}
+.ProfileInfoContainer {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 10px;
+}
+
+.item {
+    color: #fff;
+}
+.itemAbout{
+    color: #ffffff9f;
 }
 
 
