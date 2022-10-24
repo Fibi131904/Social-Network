@@ -2,7 +2,7 @@ import React, { ComponentType } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import { Route, withRouter } from 'react-router-dom';
-import { UsersPage } from './components/Users/UsersContainer';
+import { UsersPage } from './components/Users/UsersPage';
 import HeaderContainer from './components/Header/HeaderContainer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';

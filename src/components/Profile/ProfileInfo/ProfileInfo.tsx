@@ -8,6 +8,7 @@ import { Button } from 'antd';
 import ProfileDataForm from './ProfileDataForm';
 import { ProfilePageType, ContactsType } from '../../../types/types';
 import fon from '../../../assets/img/fon.jpg'
+import { useDispatch } from 'react-redux';
 
 
 
@@ -21,7 +22,7 @@ type ProfileInfoPropsType = {
 }
 
 export const ProfileInfo = (props: ProfileInfoPropsType) => {
-
+    const dispath = useDispatch()
     const [editMode, setEditMode] = useState(false);
 
     if (!props.profile) {
@@ -35,8 +36,10 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
     }
    
     const onSubmit = (formData: ProfilePageType | null) => {
-     saveProfile(formData)
-     setEditMode(false)
+     
+        dispath(saveProfile(formData))
+        console.log(formData)
+     dispath(setEditMode(false))
     }
     const backFon = {
         backgroundImage: `url(${fon})`,

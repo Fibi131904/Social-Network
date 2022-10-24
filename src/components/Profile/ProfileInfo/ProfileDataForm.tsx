@@ -40,7 +40,7 @@ const ProfileDataForm = (props: InjectedFormProps<ProfilePageType>) => {
       })}
     </div>
     <div >
-      <button onClick={handleSubmit}>Save</button>
+      <button >Save</button>
     </div>
   </form>
   </div>
