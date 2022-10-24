@@ -1,39 +1,68 @@
-import React from "react";
-import { FilterType, UserType } from "../../redux/users-reducer";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FilterType, requestUsers } from "../../redux/users-reducer";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getPageSize,
+    getPortionSize,
+    getTotalUsersCount,
+    getUsers,
+    getUsersFilter
+} from "../../redux/users-selectors";
 import { Pagination } from "../common/Pagination/Pagination";
 import { User } from "./User";
 import { UsersSearchForm } from "./UsersSearchForm";
 
-type PropsType = {
-    users: Array<UserType>
-    pageSize: number
-    totalItemsCount: number
-    currentPage: number
-    onPageChanged: (pageNumber: number) => void
-    onFilterChanged: (filter: FilterType) => void
-    followingInProgress: Array<number>
-    followThunkCreator: (userId: number) => void
-    unfollowThunkCreator: (userId: number) => void
-    portionSize: number
-}
 
 
-export const Users =React.memo( (props: PropsType)=> {
+
+
+export const Users: React.FC = React.memo((props) => {
+
+    const users = useSelector(getUsers)
+    const totalItemsCount = useSelector(getTotalUsersCount)
+    const currentPage = useSelector(getCurrentPage)
+    const pageSize = useSelector(getPageSize)
+    const filter = useSelector(getUsersFilter)
+    const followingInProgress = useSelector(getFollowingInProgress)
+    const portionSize = useSelector(getPortionSize)
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(requestUsers(currentPage, pageSize, filter))
+    }, [])
+
+    const onPageChanged = (pageNunber: number) => {
+        dispatch(requestUsers(pageNunber, pageSize, filter))
+    }
+
+    const onFilterChanged = (filter: FilterType) => {
+        dispatch(requestUsers(1, pageSize, filter))
+    }
+    const follow = (userId: number) => {
+        dispatch(follow(userId))
+    }
+
+    const unfollow = (userId: number) => {
+        dispatch(unfollow(userId))
+    }
+
     return (
         <div>
-            <UsersSearchForm onFilterChanged= {props.onFilterChanged} />
+            <UsersSearchForm onFilterChanged={onFilterChanged} />
             <Pagination
-                pageSize={props.pageSize}
-                totalUsersCount={props.totalItemsCount}
-                currentPage={props.currentPage}
-                onPageChanged={props.onPageChanged}
-                portionSize={props.portionSize}
+                pageSize={pageSize}
+                totalUsersCount={totalItemsCount}
+                currentPage={currentPage}
+                onPageChanged={onPageChanged}
+                portionSize={portionSize}
             />
-            {props.users.map(u => <User user={u}
-                follow={props.followThunkCreator}
+            {users.map(u => <User user={u}
+                follow={follow}
                 key={u.id}
-                unfollow={props.unfollowThunkCreator}
-                followingInProgress={props.followingInProgress}
+                unfollow={unfollow}
+                followingInProgress={followingInProgress}
             />
             )
             }
@@ -41,3 +70,4 @@ export const Users =React.memo( (props: PropsType)=> {
     )
 }
 )
+

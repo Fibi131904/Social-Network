@@ -2,7 +2,7 @@ import React, { ComponentType } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import { Route, withRouter } from 'react-router-dom';
-import UsersContainer from './components/Users/UsersContainer';
+import { UsersPage } from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -43,7 +43,7 @@ class App extends React.Component<AppType>{
                 <div className={'app-wrapper-content'}>
                     <Route path={"/dialogs"} render={withSuspense(DialogsContainer)} />
                     <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
-                    <Route path={"/users"} render={() => <UsersContainer />} />
+                    <Route path={"/users"} render={() => <UsersPage />} />
                     <Route path={"/login"} render={() => <LoginForm />} />
                 </div>
             </div>
