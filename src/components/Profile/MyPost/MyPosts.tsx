@@ -39,7 +39,7 @@ let maxLength10 = maxLengthCreator(10)
 const AddNewPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
-      <div>
+      <div >
         <Field name={'newMessageText'} component={Textarea} placeholder={'Enter message'} validate={[required, maxLength10]} />
       </div>
       <div>

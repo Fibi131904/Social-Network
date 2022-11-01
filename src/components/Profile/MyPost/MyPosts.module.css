@@ -1,9 +1,22 @@
 
 .postsBlock {
+    min-height: 48vh;
     padding: 10px;
-    
-}
+    position: absolute;
+    top: 78px;
+    right: 30px;
+    border: 2px solid #0389c9;
+    border-radius: 10px;
+    margin:30px;
+  }
+  h3{
+    color:white;
+    text-align: center;
+  }
 
 .posts {
     margin-top:  10px;
+   
+   
 }
+
