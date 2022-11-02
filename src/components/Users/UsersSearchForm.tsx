@@ -22,7 +22,7 @@ export const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
   const submit = (values: FormType, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
     const filter: FilterType = {
       term: values.term,
-      friend: values.friend === 'null' ? null : values.friend === 'false' ? true : false
+      friend: values.friend === 'null' ? null : values.friend === 'false' ? false : true
     }
     props.onFilterChanged(filter)
     setSubmitting(false)

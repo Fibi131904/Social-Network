@@ -1,20 +1,33 @@
 .UserContainer {
-    height: 30vh;
-    border: 5px solid yellow;
+    height: 25vh;
+    border: 5px solid rgba(248, 213, 58, 0.966);
     border-radius: 10px ;
-    width: 230px;
+    width: 200px;
     margin: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+  
   }
 
   .Userphoto {
     width: 100px;
     height: 100px;
-    border-radius: 10px;
+    border-radius: 10px ;
+   
    
 }
+.userName {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    font-size: 15px;
+    margin: 5px; 
+    text-align: center; 
+}
+
+
+
 .users {
     display: flex;
     flex-wrap: wrap;

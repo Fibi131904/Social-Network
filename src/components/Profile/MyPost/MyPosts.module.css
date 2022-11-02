@@ -2,7 +2,7 @@
 .postsBlock {
     min-height: 48vh;
     padding: 10px;
-       border: 2px solid red;
+       border: 2px solid white;
     border-radius: 10px;
     margin:30px;
   }

@@ -25,7 +25,7 @@ export const User: React.FC<PropsType> = React.memo(({ user, followingInProgress
             </div>
 
             <div>
-                <div >{user.name}</div>
+                <div className={style.userName}>{user.name}</div>
                 <div>{user.status}</div>
             </div>      
 
