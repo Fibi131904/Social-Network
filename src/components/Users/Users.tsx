@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FilterType, requestUsers } from "../../redux/users-reducer";
+import { FilterType, followAC, requestUsers, unfollowAC } from "../../redux/users-reducer";
 import {
     getCurrentPage,
     getFollowingInProgress,
@@ -47,11 +47,11 @@ export const Users: React.FC = React.memo((props) => {
         dispatch(requestUsers(1, pageSize, filter))
     }
     const follow = (userId: number) => {
-        dispatch(follow(userId))
+        dispatch(followAC(userId))
     }
 
     const unfollow = (userId: number) => {
-        dispatch(unfollow(userId))
+        dispatch(unfollowAC(userId))
     }
 
     return (
