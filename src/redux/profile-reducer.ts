@@ -97,13 +97,13 @@ export type ThuhkType = ThunkAction<void, AppStateType, unknown, ActionType>
 export type ThunkDispatchType = ThunkDispatch<AppStateType, unknown, ActionType>
 
 
-export const getUserProfile = (userId: number | null): ThunkType => async (dispatch: ThunkDispatchType) => {
-    const response = await usersAPI.getProfile(userId);
+export const getUserProfile = (userId: number | null ): ThunkType => async (dispatch: ThunkDispatchType) => {
+    const response = await profileAPI.getProfile(userId);
     dispatch(setUserProfile(response.data))
 }
 
-export const getUserStatus = (status: string): ThunkType => async (dispatch: ThunkDispatchType) => {
-    let response = await profileAPI.getStatus(status)
+export const getUserStatus = (userId: number): ThunkType => async (dispatch: ThunkDispatchType) => {
+    let response = await profileAPI.getStatus(userId)
     dispatch(setStatus(response.data));
 }
 
@@ -120,8 +120,7 @@ export const savePhoto = (file: string): ThuhkType => async (dispatch: ThunkDisp
     }
 }
 export const saveProfile = (profile: ProfilePageType | null): ThunkType => async (dispatch: ThunkDispatchType, getState) => {
-    debugger
-    const userId = getState().auth.userId
+      const userId = getState().auth.userId
     const response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId))

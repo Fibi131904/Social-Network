@@ -11,7 +11,7 @@ import { Users } from './Users'
 
     const isFetching = useSelector(getIsFetching)
     return <>
-        {isFetching ? <Preloader /> : ''}
+        {isFetching ? <Preloader /> : null}
         <Users />
     </>
 }

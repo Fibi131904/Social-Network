@@ -1,3 +1,6 @@
+import { updateObjectInArray } from './../utils/helpers/object-helpers';
+import { AxiosResponse } from "axios"
+import { Dispatch } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 import { usersAPI } from "../api/api"
 import { AppStateType } from "./redux-store"
@@ -6,7 +9,6 @@ import { AppStateType } from "./redux-store"
 export type UserType = {
     id: number
     fullName: string
-    pfotoUrl: string
     followed: boolean
     status: null | string
     location: UsersLocation
@@ -24,7 +26,7 @@ export type FilterType = typeof initionState.filter
 
 const initionState = {
     users: [] as Array<UserType>,
-    pageSize: 10,
+    pageSize: 12,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
@@ -39,27 +41,29 @@ const initionState = {
 
 export const usersReducer = (state: InitialStateType = initionState, action: ActionUsersTypes): InitialStateType => {
     switch (action.type) {
-        case 'FOLLOW': {
-            return { ...state, users: state.users.map(u => u.id === action.payload.usersId ? { ...u, followed: true } : u) }
+        case 'FOLLOW': 
+            return { ...state,
+                 users: updateObjectInArray(state.users, action.payload.userId, 'id',{followed:true})
         }
-        case 'UNFOLLOW': {
-            return { ...state, users: state.users.map(u => u.id === action.payload.usersId ? { ...u, followed: false } : u) }
+        case 'UNFOLLOW': 
+            return { ...state,
+                 users: updateObjectInArray(state.users, action.payload.userId, 'id',{followed:false})
         }
-        case 'SET_USERS': {
+        case 'SET_USERS': 
             return { ...state, users: action.payload.users }
-        }
-        case 'SET_CURRENT_PAGE': {
+        
+        case 'SET_CURRENT_PAGE': 
             return { ...state, currentPage: action.payload.currentPage }
-        }
-        case 'SET_FILTER': {
+        
+        case 'SET_FILTER': 
             return { ...state, filter: action.payload}
-        }
-        case 'SET_TOTAL_USERS_COUNT': {
+        
+        case 'SET_TOTAL_USERS_COUNT': 
             return { ...state, totalUsersCount: action.payload.totalUsersCount }
-        }
-        case 'TOGGLE_IS_FETCHING': {
+        
+        case 'TOGGLE_IS_FETCHING': 
             return { ...state, isFetching: action.payload.isFetching }
-        }
+        
         case "TOGGLE_IS_FOLOWING_PROGRESS":
             return {
                 ...state,
@@ -74,8 +78,8 @@ export const usersReducer = (state: InitialStateType = initionState, action: Act
 }
 
 type ActionUsersTypes =
-    | ReturnType<typeof followSucces>
-    | ReturnType<typeof unfollowSucces>
+    | ReturnType<typeof followSuccess>
+    | ReturnType<typeof unfollowSuccess>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setFilter>
@@ -83,8 +87,8 @@ type ActionUsersTypes =
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof togglefollowingInProgress>
 
-export const followSucces = (usersId: number) => ({ type: 'FOLLOW', payload: { usersId } } as const)
-export const unfollowSucces = (usersId: number) => ({ type: 'UNFOLLOW', payload: { usersId } } as const)
+export const followSuccess = (userId: number) => ({ type: 'FOLLOW', payload: { userId } } as const)
+export const unfollowSuccess = (userId: number) => ({ type: 'UNFOLLOW', payload: { userId } } as const)
 export const setUsers = (users: Array<UserType>) => ({ type: 'SET_USERS', payload: { users } } as const)
 export const setCurrentPage = (currentPage: number) => ({ type: 'SET_CURRENT_PAGE', payload: { currentPage } } as const)
 export const setFilter = (filter: FilterType) => ({ type: 'SET_FILTER', payload: filter } as const)
@@ -97,12 +101,13 @@ export type ThunkType = ThunkAction<void, AppStateType, unknown, ActionUsersType
 export type ThunkDispatchType = ThunkDispatch<AppStateType, unknown, ActionUsersTypes>
 
 export const requestUsers = (page: number,
-     pageSize: number, filter:FilterType): ThunkType => async (dispatch: ThunkDispatchType) => {
+    pageSize: number, filter:FilterType): ThunkType => async (dispatch: ThunkDispatchType) => {
     dispatch(toggleIsFetching(true));
     dispatch(setCurrentPage(page))
     dispatch(setFilter(filter))
 
-    let data = await usersAPI.getUsers(page, pageSize, filter.term, filter.friend)
+
+    const data = await usersAPI.getUsers(page, pageSize, filter.term, filter.friend)
 
     dispatch(toggleIsFetching(false));
     dispatch(setUsers(data.items));
@@ -110,10 +115,14 @@ export const requestUsers = (page: number,
 };
 
 
-const followUnfollowFlow = async (dispatch: ThunkDispatchType, userId: number, apiMethod: (arg0: number) => any, actionCreator: (arg0: number) => any) => {
+const followUnfollowFlow = async (dispatch: Dispatch<ActionUsersTypes>,
+    userId: number,
+    apiMethod: (userId: number) => Promise<AxiosResponse>,
+    actionCreator: (userId: number) => ActionUsersTypes) => {
     dispatch(togglefollowingInProgress(true, userId))
 
-    let response = await apiMethod(userId)
+    const response = await apiMethod(userId)
+    
     if (response.data.resultCode === 0) {
         dispatch(actionCreator(userId))
     }
@@ -122,13 +131,12 @@ const followUnfollowFlow = async (dispatch: ThunkDispatchType, userId: number, a
 
 export const follow = (userId: number): ThunkType => {
     return async (dispatch: ThunkDispatchType) => {
-        followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(userId), followSucces)
+        await followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess);
     }
 }
-
 export const unfollow = (userId: number): ThunkType => {
-    return async dispatch => {
-        followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(userId), unfollowSucces)
+    return async (dispatch: ThunkDispatchType) => {
+        await followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess);
     }
 }
 

@@ -13,6 +13,8 @@ import {
 import { Pagination } from "../common/Pagination/Pagination";
 import { User } from "./User";
 import { UsersSearchForm } from "./UsersSearchForm";
+import style from './User.module.css'
+
 
 
 
@@ -29,6 +31,10 @@ export const Users: React.FC = React.memo((props) => {
     const portionSize = useSelector(getPortionSize)
 
     const dispatch = useDispatch()
+   
+
+    
+    
     useEffect(() => {
         dispatch(requestUsers(currentPage, pageSize, filter))
     }, [])
@@ -58,16 +64,16 @@ export const Users: React.FC = React.memo((props) => {
                 onPageChanged={onPageChanged}
                 portionSize={portionSize}
             />
-            {users.map(u => <User user={u}
-                follow={follow}
-                key={u.id}
-                unfollow={unfollow}
-                followingInProgress={followingInProgress}
-            />
-            )
-            }
+            <div className={style.users}>
+                {users.map(u => <User user={u}
+                    follow={follow}
+                    key={u.id}
+                    unfollow={unfollow}
+                    followingInProgress={followingInProgress}
+                />
+                )}
+            </div>
         </div>
     )
-}
-)
+})
 

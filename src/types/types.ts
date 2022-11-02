@@ -23,10 +23,10 @@ export type ContactsType = {
   export type ProfilePageType = {
     aboutMe?: string
     contacts: ContactsType
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
+    lookingForAJob?: boolean
+    lookingForAJobDescription?: string
+    fullName?: string
+    userId?: number
     photos?: PhotosType
   }
 

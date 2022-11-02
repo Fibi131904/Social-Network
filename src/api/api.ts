@@ -1,5 +1,5 @@
 
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { UserType } from "../redux/users-reducer";
 import { ProfilePageType } from "../types/types";
 
@@ -19,48 +19,49 @@ export type GetItemsType = {
     items: Array<UserType>
     totalCount: number
     error: string | null
-}
-export const usersAPI = {
-     async getUsers(currentPage: number, pageSize: number,
-         term: string = '', friend: null | boolean = null) {
-        const response = await instance.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}$term=${term}`+ (friend == null? '' : `&friend=${friend}`))
-        return response.data;
-    },
+  }
 
+ 
+export const usersAPI = {
+    getUsers(currentPage: number, pageSize: number,term: string = '', friend: null | boolean = null) {
+        return instance.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}&term=${term}` + (friend === null ? '' : `&friend=${friend}`) )
+            .then(response => response.data)
+    },
     follow(userId: number) {
-        return instance.post(`follow/${userId}`)
+        return instance.post<'', AxiosResponse<UserType>>(`follow/${userId}`)
+       
     },
     unfollow(userId: number) {
-        return instance.delete(`follow/${userId}`)
+        return instance.delete<'', AxiosResponse<UserType>>(`follow/${userId}`)
+        
     },
     getProfile(userId: number | null) {
-        console.warn('Obsolute method.Please profileAPI object.')
+        console.log('Obsolete method. Please use profileAPI object.')
         return profileAPI.getProfile(userId)
-
     }
 }
 
 export const profileAPI = {
-    getProfile(userId: number | null) {
+    getProfile(userId: number| null ) {
         return instance.get(`profile/${userId}`)
     },
-    getStatus(userId: string) {
-        return instance.get(`profile/status/` + userId)
+    getStatus(userId: number) {
+        return instance.get(`profile/status/${userId}`)
     },
     updateStatus(status: string) {
-        return instance.put(`profile/status`, { status: status })
+        return instance.put(`profile/status`, { status })
     },
     savePhoto(photoFile: string) {
-        const formData = new FormData()
+        const formData = new FormData();
         formData.append('image', photoFile)
         return instance.put(`profile/photo`, formData, {
             headers: {
-                'Content-Type': 'multipert/form-data'
+                'Content-Type': 'multipart/form-data'
             }
         })
     },
     saveProfile(profile: ProfilePageType | null) {
-        return instance.put(`profile`, profile)
+        return instance.put(`profile`, profile);
     }
 }
 export enum ResultCodesEnum {
