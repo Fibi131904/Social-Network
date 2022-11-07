@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 import { login } from '../../redux/auth-reducer'
 import { AppStateType } from '../../redux/redux-store'
 import charcter from '../../assets/img/charcter.png'
-import style from './Login.module.css';
+import styles from './Login.module.css';
 
 
 
@@ -54,19 +54,19 @@ export const LoginForm = () => {
         return <Redirect to={'/profile'} />
     }
     return (
-        <div className={style.loginContainer} >
-            <div className={style.loginWelcom} >
+        <div className={styles.loginContainer} >
+            <div className={styles.loginWelcom} >
 
                 <div>
-                    <img src={charcter} className={style.img} alt='' />
+                    <img src={charcter} className={styles.img} alt='' />
                     <h1>Welcome back!</h1>
                 </div>
             </div>
 
-                <div className={style.loginForm}>
+                <div className={styles.loginForm}>
                     
-                        <div className={style.loginDiscription}>
-                           <div className={style.loginTitle} >
+                        <div className={styles.loginDiscription}>
+                           <div className={styles.loginTitle} >
                             <h2 >Login</h2>
                             </div> 
                             <p>To log in get registered
@@ -80,7 +80,7 @@ export const LoginForm = () => {
                         </div>
 
 
-                        <form onSubmit={formik.handleSubmit} className={style.loginFormik}>
+                        <form onSubmit={formik.handleSubmit} className={styles.loginFormik}>
                             <Space direction="vertical">
                            
                                 <Input placeholder='Login'
@@ -102,7 +102,7 @@ export const LoginForm = () => {
                                 {captchaUrl && <img src={captchaUrl} alt={'captcha'} />}
                                 {captchaUrl && <input  {...formik.getFieldProps('captchaUrl')}
                                 />}
-                                <div className={style.loginButton}>
+                                <div className={styles.loginButton}>
                                     <Button type={'primary'} htmlType='submit' shape={'default'}>
                                         Login
                                     </Button>

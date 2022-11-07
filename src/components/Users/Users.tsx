@@ -13,7 +13,7 @@ import {
 import { Pagination } from "../common/Pagination/Pagination";
 import { User } from "./User";
 import { UsersSearchForm } from "./UsersSearchForm";
-import style from './User.module.css'
+import styles from './User.module.css'
 
 
 
@@ -64,7 +64,7 @@ export const Users: React.FC = React.memo((props) => {
                 onPageChanged={onPageChanged}
                 portionSize={portionSize}
             />
-            <div className={style.users}>
+            <div className={styles.users}>
                 {users.map(u => <User user={u}
                     follow={follow}
                     key={u.id}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from './Post/Post';
-import style from './MyPosts.module.css';
+import styles from './MyPosts.module.css';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { maxLengthCreator, required } from '../../../utils/validators/validators';
 import { Textarea } from '../../common/FormsControls/FormsControls';
@@ -25,10 +25,10 @@ const MyPosts = React.memo((props: MyPostPropsType) => {
 
 
   return (
-    <div className={style.postsBlock}>
+    <div className={styles.postsBlock}>
       <h3> My Posts</h3>
       <AddNewPostFormRedux onSubmit={onAddPost}/>
-      <div className={style.posts}>
+      <div className={styles.posts}>
         {postElements}
       </div>
     </div>
