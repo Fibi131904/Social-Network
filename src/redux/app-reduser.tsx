@@ -30,17 +30,14 @@ export const appReducer = (state: InitialStateType = initialState, action: Actio
             }
         default:
             return state
-
     }
-
 }
 
 
 export const initializedSuccess = () => {
-    return {
-        type:  INITIALIZED_SUCCESS ,
-       
-    } as const
+  return {
+    type: INITIALIZED_SUCCESS,
+  } as const
 }
 
 

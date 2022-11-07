@@ -17,7 +17,6 @@ type ProfileType = {
 
 export const Profile = (props: ProfileType) => {
 
-
   return (
     <div>
       <ProfileInfo
@@ -30,6 +29,4 @@ export const Profile = (props: ProfileType) => {
       <MyPostsContainer />
     </div>
   );
-
 }
-

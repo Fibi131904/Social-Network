@@ -37,7 +37,7 @@ export const Users: React.FC = React.memo((props) => {
     
     useEffect(() => {
         dispatch(requestUsers(currentPage, pageSize, filter))
-    }, [])
+    }, [currentPage, dispatch, filter, pageSize])
 
     const onPageChanged = (pageNunber: number) => {
         dispatch(requestUsers(pageNunber, pageSize, filter))

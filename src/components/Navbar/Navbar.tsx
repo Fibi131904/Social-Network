@@ -30,9 +30,7 @@ import style from './Navbar.module.css';
           <NavLink to='/frends'>Frends</NavLink>
           </div>
         </nav>
-
       )
-
  }
 
 

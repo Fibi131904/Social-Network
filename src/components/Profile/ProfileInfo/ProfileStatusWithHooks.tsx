@@ -23,7 +23,6 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
     }
     const onStatusChange= (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value);
-
     }
 
     return (

@@ -5,7 +5,7 @@ import { Profile } from './Profile';
 import { getUserProfile, updateUserStatus, getUserStatus, savePhoto, saveProfile } from '../../redux/profile-reducer';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { ContactsType, PhotosType, ProfilePageType } from '../../types/types';
+import { ProfilePageType } from '../../types/types';
 
 
 
@@ -82,7 +82,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 
 
 
-//export default connect(mapStateToProps,{getUserProfile})(WithUrlDataContainerComponent);
 export default compose<ComponentType>(
   connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus, savePhoto, saveProfile }),
   withRouter,

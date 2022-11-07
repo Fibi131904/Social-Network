@@ -1,12 +1,10 @@
 
 
-const SEND_MESSAGE = "SEND_MESSAGE"
-
+const SEND_MESSAGE = 'SEND_MESSAGE'
 
 export type DialogsDataType = {
-    id: number
-    name: string
-
+  id: number
+  name: string
 }
 
 export type MessagesDataType = {

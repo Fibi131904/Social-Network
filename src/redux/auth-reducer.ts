@@ -1,7 +1,8 @@
-import {  ResultCodeForCaptchaEnum, ResultCodesEnum, securityAPI } from '../api/usersAPI';
-import { stopSubmit } from "redux-form"
-import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { authAPI } from "../api/usersAPI"
+import { stopSubmit } from "redux-form";
+import { ThunkAction, ThunkDispatch } from "redux-thunk";
+import { authAPI } from "../api/authAPI";
+import { securityAPI } from "../api/securityAPI";
+import { ResultCodeForCaptchaEnum, ResultCodesEnum } from "../api/types";
 import { AppStateType } from "./redux-store"
 
 
@@ -23,20 +24,21 @@ type ActionUsersType =
     ReturnType<typeof setUserData> | ReturnType<typeof stopSubmit> | ReturnType<typeof getCaptchaUrlSuccess>
 
 
-export const authReducer = (state: AuthStateType = initialState, action: ActionUsersType): AuthStateType => {
+export const authReducer = (
+  state: AuthStateType = initialState,
+  action: ActionUsersType
+): AuthStateType => {
+  switch (action.type) {
+    case SET_USER_DATA:
+    case GET_CAPTCHA_URL_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+      }
 
-    switch (action.type) {
-        case SET_USER_DATA:
-        case GET_CAPTCHA_URL_SUCCESS:
-
-            return {
-                ...state,
-                ...action.payload
-            }
-
-        default:
-            return state
-    }
+    default:
+      return state
+  }
 }
 
 
