@@ -1,7 +1,7 @@
-import {  ResultCodeForCaptchaEnum, ResultCodesEnum, securityAPI } from './../api/api';
+import {  ResultCodeForCaptchaEnum, ResultCodesEnum, securityAPI } from '../api/usersAPI';
 import { stopSubmit } from "redux-form"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { authAPI } from "../api/api"
+import { authAPI } from "../api/usersAPI"
 import { AppStateType } from "./redux-store"
 
 

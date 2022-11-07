@@ -1,6 +1,6 @@
 import { stopSubmit } from "redux-form"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { profileAPI, usersAPI } from "../api/api"
+import { profileAPI, usersAPI } from "../api/usersAPI"
 import { PhotosType, PostDataType, ProfilePageType  } from "../types/types"
 import { AppStateType } from "./redux-store"
 import { ThunkType } from "./users-reducer"

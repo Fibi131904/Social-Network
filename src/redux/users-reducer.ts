@@ -2,7 +2,7 @@ import { updateObjectInArray } from './../utils/helpers/object-helpers';
 import { AxiosResponse } from "axios"
 import { Dispatch } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { usersAPI } from "../api/api"
+import { usersAPI } from "../api/usersAPI"
 import { AppStateType } from "./redux-store"
 
 

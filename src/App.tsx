@@ -1,68 +1,66 @@
-import React, { ComponentType } from 'react';
-import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import { Route, withRouter } from 'react-router-dom';
-import { UsersPage } from './components/Users/UsersPage';
-import HeaderContainer from './components/Header/HeaderContainer';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { initializeApp } from './redux/app-reduser';
-import { AppStateType } from './redux/redux-store';
-import { Preloader } from './Preloader';
-import { withSuspense } from './hoc/withSuspense';
-import ProfileContainer from './components/Profile/ProfileContainer';
-import { LoginForm } from './components/Login/Login';
+import React, { ComponentType } from 'react'
+import './App.css'
+import Navbar from './components/Navbar/Navbar'
+import { Route, withRouter } from 'react-router-dom'
+import { UsersPage } from './components/Users/UsersPage'
+import HeaderContainer from './components/Header/HeaderContainer'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { initializeApp } from './redux/app-reduser'
+import { AppStateType } from './redux/redux-store'
+import { Preloader } from './Preloader'
+import { withSuspense } from './hoc/withSuspense'
+import ProfileContainer from './components/Profile/ProfileContainer'
+import { LoginForm } from './components/Login/Login'
 
-const DialogsContainer= React.lazy(()=> import('./components/Dialogs/DialogsContainer'));
-
-
-
+const DialogsContainer = React.lazy(
+  () => import('./components/Dialogs/DialogsContainer')
+)
 
 type MapToDispatchPropsType = {
-    initializeApp: () => void
+  initializeApp: () => void
 }
+
 type MapStateToPropsType = {
-    initialized: boolean
+  initialized: boolean
 }
 
-export type AppType = MapToDispatchPropsType & MapStateToPropsType;
+export type AppType = MapToDispatchPropsType & MapStateToPropsType
 
-class App extends React.Component<AppType>{
-
-    componentDidMount() {
-        this.props.initializeApp();
+class App extends React.Component<AppType> {
+  componentDidMount() {
+    this.props.initializeApp()
+  }
+  render() {
+    if (!this.props.initialized) {
+      return <Preloader />
     }
-    render() {
-        if (!this.props.initialized) {
-            return <Preloader />
-        }
-        return (
-            <div className="app-wrapper">
-                <HeaderContainer />
-                <Navbar />
-                <div className={'app-wrapper-content'}>
-                    <Route path={"/dialogs"} render={withSuspense(DialogsContainer)} />
-                    <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
-                    <Route path={"/users"} render={() => <UsersPage />} />
-                    <Route path={"/login"} render={() => <LoginForm />} />
-                </div>
-            </div>
-        );
-    }
+    return (
+      <div className="app-wrapper">
+        <HeaderContainer />
+        <Navbar />
+        <div className={'app-wrapper-content'}>
+          <Route path={'/dialogs'} render={withSuspense(DialogsContainer)} />
+          <Route
+            path={'/profile/:userId?'}
+            render={() => <ProfileContainer />}
+          />
+          <Route path={'/users'} render={() => <UsersPage />} />
+          <Route path={'/login'} render={() => <LoginForm />} />
+        </div>
+      </div>
+    )
+  }
 }
+
 const MapStateToProps = (state: AppStateType) => ({
-    initialized: state.app.initialized
+  initialized: state.app.initialized,
 })
 
-
 export default compose<ComponentType>(
-    withRouter,
-    connect<MapStateToPropsType, MapToDispatchPropsType, {}, AppStateType>(MapStateToProps, { initializeApp }))(App);
-
-
-
-
-
-
-
-
+  withRouter,
+  connect<MapStateToPropsType, MapToDispatchPropsType, {}, AppStateType>(
+    MapStateToProps,
+    { initializeApp }
+  )
+)(App)
