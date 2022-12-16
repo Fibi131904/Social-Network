@@ -1,0 +1,10 @@
+
+.messagesBlock {
+  height:400px;
+  overflow-y:auto;
+}
+
+img {
+  height: 30px;
+  margin: 5px;
+}
