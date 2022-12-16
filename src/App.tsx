@@ -9,32 +9,23 @@ import { initializeApp } from './redux/app-reduser'
 import { AppStateType } from './redux/redux-store'
 import { Preloader } from './Preloader'
 import { withSuspense } from './hoc/withSuspense'
-import ProfileContainer from './components/Profile/ProfileContainer'
 import { LoginForm } from './components/Login/Login'
+import { AppHeader } from './components/Header/Header'
 import {  Breadcrumb , Layout, Menu } from 'antd'
 import {
   UserOutlined,
   LaptopOutlined,
   NotificationOutlined,
 } from '@ant-design/icons'
-import { AppHeader } from './components/Header/Header'
+
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
+const ChatPage = React.lazy(() => import('./pages/Chat/ChatPage'))
 
 const { SubMenu } = Menu
 const { Content, Sider, Footer } = Layout
 
-const DialogsContainer = React.lazy(
-  () => import('./components/Dialogs/DialogsContainer')
-)
-
-type MapToDispatchPropsType = {
-  initializeApp: () => void
-}
-
-type MapStateToPropsType = {
-  initialized: boolean
-}
-
-export type AppType = MapToDispatchPropsType & MapStateToPropsType
 
 class App extends React.Component<AppType> {
   componentDidMount() {
@@ -79,7 +70,7 @@ class App extends React.Component<AppType> {
                   key="sub3"
                   icon={<NotificationOutlined />}
                   title="subnav3">
-                  <Menu.Item key="1">nav 1</Menu.Item>
+                  <Menu.Item key="1"><Link to='/chat'>Chat</Link></Menu.Item>
                   <Menu.Item key="2">nav 2</Menu.Item>
                   <Menu.Item key="3">nav 3</Menu.Item>
                   <Menu.Item key="4">nav 4</Menu.Item>
@@ -93,10 +84,12 @@ class App extends React.Component<AppType> {
               />
               <Route
                 path={'/profile/:userId?'}
-                render={() => <ProfileContainer />}
+                render={withSuspense(ProfileContainer)}
               />
               <Route path={'/developers'} render={() => <UsersPage />} />
               <Route path={'/login'} render={() => <LoginForm />} />
+              <Route path={'/chat'} render={withSuspense(ChatPage)} />
+              <Route path='*' render={() => <div>404 NOT FOUND</div>} />
             </Content>
           </Layout>
         </Content>
@@ -119,3 +112,10 @@ export default compose<ComponentType>(
   )
 )(App)
 
+type MapToDispatchPropsType = {
+  initializeApp: () => void
+}
+type MapStateToPropsType = {
+  initialized: boolean
+}
+export type AppType = MapToDispatchPropsType & MapStateToPropsType
