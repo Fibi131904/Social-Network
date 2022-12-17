@@ -1,9 +1,9 @@
 import { stopSubmit } from "redux-form"
-import { ThunkAction, ThunkDispatch } from "redux-thunk"
+import { ThunkDispatch } from "redux-thunk"
 import { profileAPI } from "../api/profileAPI"
 import { PhotosType, PostDataType, ProfilePageType  } from "../types/types"
-import { AppStateType } from "./redux-store"
-import { ThunkType } from "./users-reducer"
+import { AppStateType, BaseThunkType } from "./redux-store"
+
 
 const ADD_POST = 'ADD_POST'
 const SET_USER_PROFILE = "SET_USER_PROFILE"
@@ -93,7 +93,7 @@ export const deletePost = (postId: number) => ({ type: 'DELETE_POST', postId } a
 export const savePhotoSuccess = (photos: PhotosType) => ({ type: 'SAVE_PHOTO_SUCCESS', photos } as const)
 
 
-export type ThuhkType = ThunkAction<void, AppStateType, unknown, ActionType>
+export type ThunkType =  BaseThunkType< ActionType>
 export type ThunkDispatchType = ThunkDispatch<AppStateType, unknown, ActionType>
 
 
@@ -107,13 +107,13 @@ export const getUserStatus = (userId: number): ThunkType => async (dispatch: Thu
     dispatch(setStatus(response.data));
 }
 
-export const updateUserStatus = (status: string): ThuhkType => async (dispatch: ThunkDispatchType) => {
+export const updateUserStatus = (status: string): ThunkType => async (dispatch: ThunkDispatchType) => {
     let response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0) {
         dispatch(setStatus(status))
     }
 }
-export const savePhoto = (file: string): ThuhkType => async (dispatch: ThunkDispatchType) => {
+export const savePhoto = (file: string): ThunkType => async (dispatch: ThunkDispatchType) => {
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
