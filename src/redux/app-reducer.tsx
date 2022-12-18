@@ -18,7 +18,7 @@ type ActionType = InferActionsTypes<typeof actions>
 export const appReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
 
     switch (action.type) {
-        case  'network/APP/INITIALIZED_SUCCESS' :
+        case  'network/app/INITIALIZED_SUCCESS' :
             return {
                 ...state,
                 initialized: true
@@ -30,11 +30,8 @@ export const appReducer = (state: InitialStateType = initialState, action: Actio
 
 
 export const actions={ 
-    initializedSuccess : () =>({ type: 'network/APP/INITIALIZED_SUCCESS', } as const)
+    initializedSuccess : () =>({ type: 'network/app/INITIALIZED_SUCCESS', } as const)
 }
-
-
-
 
 export type AuthThunkType = ThunkAction<any, AppStateType, unknown, ActionType>
 export type ThunkDispatchType = ThunkDispatch<AppStateType, unknown, ActionType>

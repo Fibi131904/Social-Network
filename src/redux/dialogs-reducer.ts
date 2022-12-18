@@ -1,18 +1,5 @@
+import { InferActionsTypes } from './redux-store';
 
-
-const SEND_MESSAGE = 'SEND_MESSAGE'
-
-export type DialogsDataType = {
-  id: number
-  name: string
-}
-
-export type MessagesDataType = {
-    id: number
-    message: string
-}
-
-export type ActionsType = ReturnType<typeof sendMessageAC>
 
 let initionState = {
     messages: [
@@ -26,25 +13,37 @@ let initionState = {
         { id: 3, name: 'Seva', },
     ] as Array<DialogsDataType>
 }
-export type InitialDialogsPageType = typeof initionState
-export const dialogsReducer = (state: InitialDialogsPageType = initionState, action: ActionsType) => {
-    switch (action.type) {
 
-        case SEND_MESSAGE:
+export const dialogsReducer = (state: InitialDialogsPageType = initionState, action: ActionsType) =>
+{
+    switch (action.type){
+        case 'network/dialogs/SEND_MESSAGE':
             let body = action.newMessageBody
             return {
                 ...state,
-                messages: [...state.messages, { id: 4, message: body }]
+                messages: [ ...state.messages, { id: 4, message: body } ]
             }
         default:
             return state;
     }
 }
 
-export const sendMessageAC = (newMessageBody: string) => {
-    return {
-        type: SEND_MESSAGE,
-        newMessageBody
-    } as const
-}
-   
+export const actions = {
+    sendMessageAC: (newMessageBody: string) =>({
+            type: 'network/dialogs/SEND_MESSAGE',
+            newMessageBody
+        } as const)
+    }
+
+
+    export type DialogsDataType = {
+        id: number
+        name: string
+    }
+    
+    export type MessagesDataType = {
+        id: number
+        message: string
+    }
+    export type ActionsType = InferActionsTypes<typeof actions>
+    export type InitialDialogsPageType = typeof initionState

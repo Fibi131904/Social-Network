@@ -1,5 +1,5 @@
 import { PostDataType,  ProfilePageType  } from "../types/types";
-import { addPostAC, deletePost, profileReducer } from "./profile-reducer";
+import { actions, profileReducer } from "./profile-reducer";
 
 const initialState = {
     messageForNewPost: '',
@@ -15,7 +15,7 @@ const initialState = {
 
 test('length of post should be incremented', () => {
     //1. test date
-    let action = addPostAC('it-kamasutra.com');
+    let action = actions.addPostAC('it-kamasutra.com');
 
     //2. action
     let newState = profileReducer(initialState, action);
@@ -25,7 +25,7 @@ test('length of post should be incremented', () => {
 
 test('message of new post should be it-kamasutra.com', () => {
     //1. test date
-    let action = addPostAC('it-kamasutra.com');
+    let action = actions.addPostAC('it-kamasutra.com');
 
     //2. action
     let newState = profileReducer(initialState, action);
@@ -35,7 +35,7 @@ test('message of new post should be it-kamasutra.com', () => {
 
 test('after deleting kength of message should be decrement', () => {
     //1. test date
-    let action = deletePost(1);
+    let action = actions.deletePost(1);
 
     //2. action
     let newState = profileReducer(initialState, action);

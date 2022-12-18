@@ -1,11 +1,8 @@
 import { FormAction, stopSubmit } from "redux-form";
-import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { authAPI } from "../api/authAPI";
 import { securityAPI } from "../api/securityAPI";
 import { ResultCodeForCaptchaEnum, ResultCodesEnum } from "../api/types";
-import { AppStateType, BaseThunkType, InferActionsTypes } from "./redux-store"
-import { Action } from 'redux';
-
+import { BaseThunkType, InferActionsTypes } from "./redux-store"
 
 
 
@@ -89,11 +86,10 @@ export const logout = (): AuthThunkType =>async (dispatch) => {
             });
     }
 
-
 export type InitialStateType = typeof initialState;
 type ActionsType = InferActionsTypes<typeof actions>
-
 export type AuthThunkType = BaseThunkType<ActionsType | FormAction>
-export type ThunkDispatchType = ThunkDispatch<AppStateType, unknown, ActionsType> 
+
+
 
     
