@@ -8,11 +8,9 @@ import styles from './ChatPage.module.css'
 
 
 const ChatPage: React.FC = () => {
-  return (
-    <div>
+  return  <div>
       <Chat />
-    </div>
-  )
+    </div>  
 }
 
 const Chat: React.FC = () => {
@@ -23,27 +21,22 @@ useEffect(()=>{
   return ()=>{
     dispatch(stopMessagesListening())
   }
-
 },[])
 
-  return (
-    <div>
+  return <div>
       <Messages  />
       <AddMessageForm  />
     </div>
-  )
-}
+  }
 
-const Messages: React.FC = () => {
- const messages=useSelector((state: AppStateType) =>state.chat.messages)
+const Messages: React.FC<{}> = ({}) => {
 
-  return (
-    <div className={styles.messagesBlock}>
-      {messages.map((m:any, index:number) => (
-        <Message key={index} message={m} />
-      ))}
-    </div>
-  )
+ const messages = useSelector((state: AppStateType) =>state.chat.messages)
+
+  return  <div className={styles.messagesBlock}>
+      {messages.map((m:any, index:number) => 
+        <Message key={index} message={m} />)}
+    </div>  
 }
 
 const Message: React.FC<{ message: ChatMessageType }> = ({ message }) => {

@@ -43,17 +43,18 @@ const newMessageHandlerCreater = (dispatch: Dispatch) =>
 }
 
 export const startMessagesListening= (): ThunkType => async (dispatch) => {
+  chatAPI.start()
    chatAPI.subscribe(newMessageHandlerCreater(dispatch))
    }
-  
+ 
 
 export const stopMessagesListening= (): ThunkType => async (dispatch) => {
- chatAPI.unsubscribe(newMessageHandlerCreater(dispatch))
+ chatAPI.unsubsribe(newMessageHandlerCreater(dispatch))
+ chatAPI.stop()
    }
 
-export const sendMessage= (message:string): ThunkType => async (dispatch) => {
- chatAPI.sendMessage(message)
-  
+export const sendMessage= (message:string): ThunkType => async () => {
+ chatAPI.sendMessage(message)  
 }
 
  

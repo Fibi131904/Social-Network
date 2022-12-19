@@ -1,8 +1,7 @@
-import { message } from 'antd';
 
 let subscribes = [] as SubscribeType[]
 
-let ws: WebSocket
+let ws: WebSocket | null = null
 const closeHandler = () => {
   setTimeout(createChannal, 3000)
 }
@@ -14,14 +13,23 @@ const onMessageHandler = (e: MessageEvent) => {
 function createChannal() {
   ws?.removeEventListener('close', closeHandler)
   ws?.close()
-  ws = new WebSocket(
-    'wss://social-network.samuraijs.com/handlers/ChatHandler.ashx'
-  )
+  ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
   ws.addEventListener('close', closeHandler)
+  ws.addEventListener('message', onMessageHandler)
  
 }
 
 export const chatAPI = {
+  start(){
+    createChannal()
+  },
+  stop(){
+    subscribes = [] 
+    ws?.removeEventListener('close', closeHandler)
+    ws?.removeEventListener('message', onMessageHandler)
+    ws?.close()
+    
+  },
   subscribe(callback: SubscribeType)
   {
     subscribes.push(callback)
@@ -29,7 +37,7 @@ export const chatAPI = {
       subscribes=subscribes.filter(s=>s !== callback)
     }
   },
-  unsubscribe(callback:SubscribeType){
+  unsubsribe(callback:SubscribeType){
   subscribes= subscribes.filter(s=> s== callback)
 },
 sendMessage(message:string){
