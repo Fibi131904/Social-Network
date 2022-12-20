@@ -1,82 +1,95 @@
-import { Button} from 'antd'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import { Button } from 'antd'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ChatMessageType } from '../../api/chatAPI'
-import { sendMessage, startMessagesListening, stopMessagesListening } from '../../redux/chat-reducer'
+import {
+  sendMessage,
+  startMessagesListening,
+  stopMessagesListening,
+} from '../../redux/chat-reducer'
 import { AppStateType } from '../../redux/redux-store'
 import styles from './ChatPage.module.css'
 
-
 const ChatPage: React.FC = () => {
-  return  <div>
+
+  return (
+    <div>
       <Chat />
-    </div>  
+    </div>
+  )
 }
 
 const Chat: React.FC = () => {
+  const dispatch = useDispatch()
+  const status = useSelector((state: AppStateType) => state.chat.status)
 
-const dispatch=useDispatch()
-useEffect(()=>{
-  dispatch(startMessagesListening())
-  return ()=>{
-    dispatch(stopMessagesListening())
-  }
-},[])
+  useEffect(() => {
+    dispatch(startMessagesListening())
+    return () => {
+      dispatch(stopMessagesListening())
+    }
+  }, [dispatch])
 
-  return <div>
-      <Messages  />
-      <AddMessageForm  />
+  return (
+    <div>
+      {status === 'error'&& <div>Some error. Please refresh the page</div>}
+      <>
+      <Messages />
+      <AddMessageForm />
+      </>
+      
     </div>
-  }
+  )
+}
 
-const Messages: React.FC<{}> = ({}) => {
+const Messages: React.FC = () => {
+  const messages = useSelector((state: AppStateType) => state.chat.messages)
+const messagesAnchorRef=useRef<HTMLDivElement>(null)
 
- const messages = useSelector((state: AppStateType) =>state.chat.messages)
+useEffect(()=>{
+  messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth'})
+},[messages])
 
-  return  <div className={styles.messagesBlock}>
-      {messages.map((m:any, index:number) => 
-        <Message key={index} message={m} />)}
-    </div>  
+  return     <div className={styles.messagesBlock}>
+      {messages.map((m, index) => <Message key={index} message={m} />)}
+   
+  <div ref={messagesAnchorRef}></div>
+  </div>
 }
 
 const Message: React.FC<{ message: ChatMessageType }> = ({ message }) => {
   return (
     <div>
-      <img src={message.photo} className={styles.messagePhoto} />
+      <img src={message.photo} className={styles.messagePhoto}/>
       <b>{message.userName}</b>
       <br />
       {message.message}
-      <hr />
+      <br />
     </div>
   )
 }
 
 const AddMessageForm: React.FC = () => {
   const [message, setMessage] = useState('')
-  const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
-  const dispatch=useDispatch()
-
+  const status = useSelector((state: AppStateType) => state.chat.status)
+  const dispatch = useDispatch()
 
   const sendMessageHandler = () => {
     if (!message) {
       return
     }
-   dispatch(sendMessage(message))
+    dispatch(sendMessage(message))
     setMessage('')
   }
 
-  const onChangeMessageClick = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(e.currentTarget.value)
-  }
+ 
 
   return (
     <div>
       <div>
-        <textarea onChange={onChangeMessageClick} value={message}></textarea>
+        <textarea onChange={(e) =>setMessage(e.currentTarget.value)} value={message}></textarea>
       </div>
-      <Button
-        onClick={sendMessageHandler}
-        disabled={false}>
+      <Button onClick={sendMessageHandler} disabled={status !== 'ready'}>
         Send
       </Button>
     </div>

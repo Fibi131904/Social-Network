@@ -19,9 +19,10 @@ import {
 } from '@ant-design/icons'
 
 
+
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
-const ChatPage = React.lazy(() => import('./pages/Chat/ChatPage'))
+ const ChatPage = React.lazy(() => import('./pages/Chat/ChatPage'))
 
 const { SubMenu } = Menu
 const { Content, Sider, Footer } = Layout
@@ -57,23 +58,15 @@ class App extends React.Component<AppType> {
                 <SubMenu key="sub1" icon={<UserOutlined />} title="My Profile">
                   <Menu.Item key="1"> <Link to="/profile">Profile</Link></Menu.Item>
                   <Menu.Item key="2"><Link to='/dialogs'>Messages</Link></Menu.Item>
-                  <Menu.Item key="3">nav 3</Menu.Item>
-                  <Menu.Item key="4">nav 4</Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub2" icon={<LaptopOutlined />} title="Developers">
                   <Menu.Item key="1"><Link to='/developers'>Developers</Link></Menu.Item>
-                  <Menu.Item key="2">nav 2</Menu.Item>
-                  <Menu.Item key="3">nav 3</Menu.Item>
-                  <Menu.Item key="4">nav 4</Menu.Item>
                 </SubMenu>
                 <SubMenu
                   key="sub3"
                   icon={<NotificationOutlined />}
                   title="subnav3">
                   <Menu.Item key="1"><Link to='/chat'>Chat</Link></Menu.Item>
-                  <Menu.Item key="2">nav 2</Menu.Item>
-                  <Menu.Item key="3">nav 3</Menu.Item>
-                  <Menu.Item key="4">nav 4</Menu.Item>
                 </SubMenu>
               </Menu>
             </Sider>

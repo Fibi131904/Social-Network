@@ -4,7 +4,8 @@ import { InitialDialogsPageType } from '../../redux/dialogs-reducer';
 import { AddMessageFormRedux } from './AddMessageForm/AddMessageFormRedux';
 import DialogItem from './DialogItem/DialogItem';
 import styles from './Dialogs.module.css';
-import Message from './Message/Message';
+import { Message } from './Message/Message';
+
 
 type DialogsPropsType = {
   dialogsPage: InitialDialogsPageType

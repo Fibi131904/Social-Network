@@ -1,15 +1,10 @@
-import React from 'react';
+import React from 'react'
 import styles from './Message.module.css'
 
-
-type MessagePropsType ={
+type MessagePropsType = {
   message: string
 }
 
-const Message = (props: MessagePropsType)=><div className={styles.message}>{props.message}</div>
- 
-
-
-
-
-export default Message;
+export const Message = (props: MessagePropsType) => (
+  <div className={styles.message}>{props.message}</div>
+)
