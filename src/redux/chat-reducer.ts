@@ -32,6 +32,7 @@ export const chatReducer = (state: InitialStateType = initialState, action: Acti
       return state
   }
 }
+
 export const actions = {
   messagesReceived: (messages: ChatMessageAPIType[]) => ({ type: 'network/chat/MESSAGES_RECEIVED', payload: { messages } } as const),
   statusChanged: (status: StatusType) => ({ type: 'network/chat/STATUS_CHANGE', payload: { status } } as const),
@@ -52,6 +53,7 @@ const newMessageHandlerCreater = (dispatch: Dispatch) =>
 }
 
 let _statusChangedHandler: ((status: StatusType) => void) | null = null
+
 const statusChangedHandlerCreater = (dispatch: Dispatch) =>
 {
   if (_statusChangedHandler === null)
@@ -83,7 +85,6 @@ export const sendMessage = (message: string): ThunkType => async () =>
 {
   chatAPI.sendMessage(message)
 }
-
 
 type ActionChatType = InferActionsTypes<typeof actions>
 type ThunkType = BaseThunkType<ActionChatType>
