@@ -60,13 +60,13 @@ class App extends React.Component<AppType> {
                   <Menu.Item key="2"><Link to='/dialogs'>Messages</Link></Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub2" icon={<LaptopOutlined />} title="Developers">
-                  <Menu.Item key="1"><Link to='/developers'>Developers</Link></Menu.Item>
+                  <Menu.Item key="3"><Link to='/developers'>Developers</Link></Menu.Item>
                 </SubMenu>
                 <SubMenu
                   key="sub3"
                   icon={<NotificationOutlined />}
                   title="subnav3">
-                  <Menu.Item key="1"><Link to='/chat'>Chat</Link></Menu.Item>
+                  <Menu.Item key="4"><Link to='/chat'>Chat</Link></Menu.Item>
                 </SubMenu>
               </Menu>
             </Sider>
